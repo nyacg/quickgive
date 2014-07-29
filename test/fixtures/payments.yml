@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1.5
+  time: 2014-07-29 13:15:07
+
+two:
+  amount: 1.5
+  time: 2014-07-29 13:15:07
