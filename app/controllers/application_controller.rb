@@ -4,4 +4,22 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :null_session
   # TODO This is a really bad idea...
   skip_before_filter :verify_authenticity_token
+
+  helper_method :authenticated?, :current_user
+
+  def authenticated?
+    not session[:user].nil?
+  end
+
+  def authenticate(user)
+    session[:user] = user.id
+  end
+
+  def deauthenticate
+    session[:user] = nil
+  end
+
+  def current_user
+    authenticated? && Campaigner.find(session[:user])
+  end
 end

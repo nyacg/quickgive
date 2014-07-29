@@ -23,6 +23,8 @@ Create a new session to log in as a campaigner.
       email: hrickards@gmail.com
     }
 
+`GET /sessions/destroy` (can alias to a nicer URL later) logs you out and redirects you back to the homepage.
+
 `GET /sessions/new` (can alias to a nicer URL later) gives you your login page `sessions#new`. That needs to post to `/sessions/create`, and that will redirect you back to somewhere (homepage?).
 
 ### Campaigns
