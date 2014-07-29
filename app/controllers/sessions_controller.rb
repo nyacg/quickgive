@@ -1,15 +1,16 @@
 class SessionsController < ApplicationController
   # POST /sessions
   # {
-  #   email: hrickards@gmail.com
+  #   email: hrickards@gmail.com,
+  #   password: foobar
   # }
   def create
-    @campaigner = Campaigner.first email: params[:email]
-    if @campaigner.nil?
-      redirect_to root_path, flash: {error: "Invalid email address"}
-    else
+    @campaigner = Campaigner.authenticate params[:email], params[:password]
+    if @campaigner
       authenticate @campaigner
       redirect_to root_path
+    else
+      redirect_to root_path, flash: {error: "Invalid email address or password."}
     end
   end
 
