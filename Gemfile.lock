@@ -28,6 +28,10 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (2.2.0.20140727)
+      execjs
+    bootstrap-sass (3.2.0.1)
+      sass (~> 3.2)
     bson (1.10.2)
     bson_ext (1.10.2)
       bson (~> 1.10.2)
@@ -124,6 +128,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
+  bootstrap-sass (~> 3.2.0)
   bson_ext
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)

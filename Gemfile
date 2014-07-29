@@ -39,3 +39,7 @@ gem 'spring',        group: :development
 # DB
 gem "mongo_mapper"
 gem "bson_ext"
+
+# Bootstrap
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
