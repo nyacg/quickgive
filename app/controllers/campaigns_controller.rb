@@ -3,6 +3,7 @@ class CampaignsController < ApplicationController
   end
 
   def show
+    # Show or show_donor depending on who user is loggeed in as
   end
 
   def edit
@@ -12,8 +13,5 @@ class CampaignsController < ApplicationController
   end
 
   def analysis
-  end
-
-  def show_donor
   end
 end
