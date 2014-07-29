@@ -1,3 +1,44 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.logo{
+	height: 1.5em;
+	opacity: 0.7;	
+}
+.row{
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+.navbar{
+	margin-bottom: 0px !important;
+}
+.dashboard-text{
+	display: inline;
+	margin-right: 1em;
+	vertical-align: bottom;
+}
+.dashboard-button{
+	float:right;
+	width: 60%;
+}
+#dashboard-acc-heading{
+	margin-bottom: 1em;
+}
+.dashboard-donation-image{
+	height: 34px;
+	opacity: 0.7;
+}
+#dashboard-recent{
+	margin-bottom: 1em;
+}
+.dashboard-donation-text{
+	display: inline;
+}
+.donations div{
+	margin-bottom: 1.7em;
+}
+.dashboard2{
+	margin-left: 1em;
+	padding-left: 15px;
+	padding-right: 15px;
+}
