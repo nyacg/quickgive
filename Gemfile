@@ -38,8 +38,11 @@ gem 'spring',        group: :development
 
 # DB
 gem "mongo_mapper"
-gem "bson_ext"
+gem "bson_ext", platforms: [:ruby]
 
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+
+# Windows...
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
