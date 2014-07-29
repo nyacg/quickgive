@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  # POST /sessions/create
+  # POST /sessions
   # {
   #   email: hrickards@gmail.com
   # }

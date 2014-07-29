@@ -4,7 +4,7 @@ class CampaignersController < ApplicationController
   def new
   end
 
-  # POST /campaigners/create
+  # POST /campaigners
   # {
   #   email: hrickards@gmail.com
   # }
