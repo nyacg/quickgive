@@ -1,7 +1,9 @@
 class CampaignsController < ApplicationController
   # POST /campaigns
   def create
-    @campaign = Campaign.new title: params[:title]
+    require_authentication!
+
+    @campaign = Campaign.new title: params[:title], campaigner: current_user
     if @campaign.save
       redirect_to campaign_path(@campaign)
     else

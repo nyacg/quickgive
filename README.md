@@ -6,12 +6,14 @@ A platform for allowing very quick donations via social media.
 
 ## Backend Flow
 #### CAMPAIGNER FLOW
-1. Signup as campaigner
+1. Signup as campaigner - done
 2. Login/logout as campaigner - done
-3. Create campaign - needs to be linked with campaigner, needs more info
+3. Create campaign - needs more info
+4. Authenticate with twitter
 
 #### NEW DONATOR FLOW
 1. Register as donor - done
+2. Upgrade to full account (donor to campaigner) - not done
 
 #### EXISTING DONATOR FLOW
 1. Donate - not done

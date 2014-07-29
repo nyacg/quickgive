@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
   def current_user
     authenticated? && Campaigner.find(session[:user])
   end
+
+  def require_authentication!
+    redirect_to root_path, flash: {error: "You need to sign in to do that!"} unless authenticated?
+  end
 end
