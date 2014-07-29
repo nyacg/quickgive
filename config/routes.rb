@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/dashboard'
   get 'campaigners/new'
-  get 'campaigners/create'
+  post 'campaigners/create'
   get 'donors/new'
-  get 'donors/create'
+  post 'donors/create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
