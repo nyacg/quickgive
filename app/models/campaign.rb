@@ -1,7 +1,7 @@
 class Campaign
   include MongoMapper::Document
 
-  belongs_to :user
+  belongs_to :campaigner
   key :title,   String, required: true
 
   many :payments

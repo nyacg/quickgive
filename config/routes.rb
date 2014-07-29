@@ -1,25 +1,17 @@
 Rails.application.routes.draw do
   get 'sessions/create'
-
   get 'campaigns/create'
-
   get 'campaigns/show'
-
   get 'campaigns/edit'
-
   get 'campaigns/share'
-
   get 'campaigns/analysis'
-
   get 'campaigns/show_di'
-
   get 'pages/home'
-
   get 'pages/dashboard'
-
-  get 'users/new_campaigner'
-
-  get 'users/new_donor'
+  get 'campaigners/new'
+  get 'campaigners/create'
+  get 'donors/new'
+  get 'donors/create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
