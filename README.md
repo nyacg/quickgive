@@ -12,7 +12,7 @@ Donator = a social login. One campaigner can have many donors.
 1. Signup as campaigner - done
 2. Login/logout as campaigner - done
 3. Create campaign - needs more info
-4. Authenticate with twitter - not done - adding child donors
+4. Authenticate with twitter (adding child donors) - done
 5. Donate (using paypal from any child donor)
 
 #### NEW DONATOR FLOW

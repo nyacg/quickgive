@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :campaigners
+  resources :campaigners do
+    post 'add_donor'
+  end
   resources :donors
 
 

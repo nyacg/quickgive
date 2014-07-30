@@ -18,4 +18,17 @@ class CampaignersController < ApplicationController
       redirect_to root_path, flash: {error: message}
     end
   end
+
+  # POST /campaigners/add_donor
+  # Add to current user
+  def add_donor
+    @campaigner = current_user
+    @campaigner.donors += Donor.find params[:donor]
+    if @campaigner.save
+      redirect_to root_path
+    else
+      message = "Error(s): " + @campaigner.errors.map {|k,v| "#{k}: #{v}"}.join(",")
+      redirect_to root_path, flash: {error: message}
+    end
+  end
 end
