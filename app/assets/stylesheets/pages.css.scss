@@ -50,3 +50,35 @@
 .page-header{
 	margin-top: 0.9em !important;
 }
+.sign-up-buttons{
+	float: right;
+	width: 60%;
+}
+.sign-up-paypal{
+	width: 100%;
+}
+#error{
+	width: 94%;
+	margin-left: 3%;
+	margin-top: 1.2em;
+}
+#inputtingbox{
+	border: 0px;
+	box-shadow: 0 0 0 0;
+	border-radius: 0 0 0 0;
+	width: 30%;
+	float: left;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 20pt;
+	color: black;
+	padding: 0px;
+	margin: 0px;
+	line-height: inherit;
+}
+#inputtingbox:focus{
+	border-bottom: 1px solid black;
+}
+#hi{
+	width: 2.6em;
+	float: left;
+}
