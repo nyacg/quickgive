@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       authenticate @campaigner
       redirect_to root_path
     else
-      redirect_to new_path, flash: {error: "Invalid email address or password."}
+      redirect_to new_session_path, flash: {error: "Invalid email address or password."}
     end
   end
 
