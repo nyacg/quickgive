@@ -1,6 +1,9 @@
 .timeline-container {
-  float: right;
   width: 40%;
+  position: absolute;
+  right: 8%;
+  top: 2%;
+  z-index: 300;
 }
 
 .timeline {
