@@ -48,3 +48,8 @@ gem 'autoprefixer-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 gem "bcrypt"
+
+gem "daemons-rails"
+
+gem "tweetstream"
+gem "twitter"
