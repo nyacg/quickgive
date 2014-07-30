@@ -46,27 +46,15 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Run for a marathon</td>
-						<td>01 June 2014</td>
-						<td>04 July 2014</td>
-						<td>Comic Relief</td>
-						<td>£500</td>
-					</tr>
-					<tr>
-						<td>Run for a marathon</td>
-						<td>01 June 2014</td>
-						<td>04 July 2014</td>
-						<td>Comic Relief</td>
-						<td>£500</td>
-					</tr>
-					<tr>
-						<td>Run for a marathon</td>
-						<td>01 June 2014</td>
-						<td>04 July 2014</td>
-						<td>Comic Relief</td>
-						<td>£500</td>
-					</tr>
+          <% @campaigns.each do |campaign| %>
+            <tr>
+              <td><%= link_to campaign.title, campaign_path(campaign) %></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          <% end %>
 				</tbody>
 			</table>
 		</div>

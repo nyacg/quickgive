@@ -4,6 +4,7 @@ class CampaignsController < ApplicationController
     require_authentication!
 
     @campaign = Campaign.new params[:campaign]
+    @campaign.campaigner = current_user
     if @campaign.save
       redirect_to campaign_path(@campaign)
     else
@@ -20,11 +21,7 @@ class CampaignsController < ApplicationController
   # GET /campaigns/:campaign_id
   def show
     @campaign = Campaign.find params[:id]
-    if authenticated?
-      render :show
-    else
-      render :show_donor
-    end
+    render :show
   end
 
   # GET /campaigns/:campaign_id/edit
