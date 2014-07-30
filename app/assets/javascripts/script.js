@@ -2,12 +2,17 @@ $(window).load(function (){
 	
 	var viewportHeight = $(window).height();
 	var bgHeight = $(".background-image").height();
-	//console.log(bgHeight + " " + viewportHeight);
+	var $heightElements = $(".above-container, .timeline-container");
+	console.log(bgHeight + " " + viewportHeight);
 	
 	if(bgHeight >= viewportHeight*1.1){
-		$(".above-container").height(viewportHeight*1.1);
+		$heightElements.height(viewportHeight*1.1);
+		$('head').append("<style>.timeline:before{height: " + viewportHeight*0.75 + "px !important;}</style>");
 	} else {
-		$(".above-container").height(bgHeight-50);
+		$heightElements.height(bgHeight-50);
+		$('head').append("<style type='text/css'>.timeline:before{height: " + bgHeight-50 + "px !important;}</style>");
 	}
+
+	$('.timeline-badge').hide();
 	
 });
