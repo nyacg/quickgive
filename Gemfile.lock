@@ -30,6 +30,8 @@ GEM
     arel (5.0.1.20140414130214)
     autoprefixer-rails (2.2.0.20140727)
       execjs
+    bcrypt (3.1.7)
+    bcrypt (3.1.7-x86-mingw32)
     bootstrap-sass (3.2.0.1)
       sass (~> 3.2)
     bson (1.10.2)
@@ -132,6 +134,7 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  bcrypt
   bootstrap-sass (~> 3.2.0)
   bson_ext
   coffee-rails (~> 4.0.0)

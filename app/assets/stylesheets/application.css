@@ -17,6 +17,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "timeline";
+@import "font_fix";
 
 body {
 	padding-top: 50px;
@@ -71,3 +72,8 @@ body {
 	padding-left: 8%;
 	padding-bottom: 2%;
 }
+
+body {
+	padding-top: 70px;
+}
+

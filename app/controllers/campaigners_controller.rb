@@ -4,12 +4,13 @@ class CampaignersController < ApplicationController
   def new
   end
 
-  # POST /campaigners/create
+  # POST /campaigners
   # {
-  #   email: hrickards@gmail.com
+  #   email: hrickards@gmail.com,
+  #   password: test
   # }
   def create
-    @campaigner = Campaigner.new email: params[:email]
+    @campaigner = Campaigner.new email: params[:email], password: params[:password], first_name: params[:first_name], last_name: params[:last_name]
     if @campaigner.save
       redirect_to root_path
     else
