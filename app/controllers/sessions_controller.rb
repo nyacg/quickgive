@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       authenticate @campaigner
       redirect_to root_path
     else
-      redirect_to root_path, flash: {error: "Invalid email address or password."}
+      redirect_to new_path, flash: {error: "Invalid email address or password."}
     end
   end
 
@@ -18,5 +18,9 @@ class SessionsController < ApplicationController
   def destroy
     deauthenticate
     redirect_to root_path
+  end
+
+  # GET /sessions/new
+  def new
   end
 end

@@ -2,6 +2,7 @@ class CampaignersController < ApplicationController
   # GET /campaigners/new
   # campaigners/new.html.erb
   def new
+    @campaigner = Campaigner.new
   end
 
   # POST /campaigners
@@ -10,12 +11,11 @@ class CampaignersController < ApplicationController
   #   password: test
   # }
   def create
-    @campaigner = Campaigner.new email: params[:email], password: params[:password], first_name: params[:first_name], last_name: params[:last_name]
+    @campaigner = Campaigner.new params[:campaigner]
     if @campaigner.save
       redirect_to root_path
     else
-      message = "Error(s): " + @campaigner.errors.map {|k,v| "#{k}: #{v}"}.join(",")
-      redirect_to root_path, flash: {error: message}
+      render 'new'
     end
   end
 

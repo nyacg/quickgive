@@ -3,6 +3,7 @@ class Campaigner
 
   attr_accessor :password
   before_save :encrypt_password
+  validates_presence_of :password
 
   many :campaigns
   many :donors
