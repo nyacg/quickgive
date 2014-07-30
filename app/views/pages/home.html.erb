@@ -1,15 +1,3 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-<% if authenticated? %>
-  <p>Logged in as <%= current_user.email %>. <%= link_to "Log out", controller: :sessions, action: :destroy %></p>
-<% else %>
-  <p>Logged out.
-  <%= form_tag(controller: "sessions", action: "create", method: "post") %> 
-    <input name="email" type="text" />
-    <%= submit_tag "Login" %>
-  </form>
-  </p>
-<% end %>
-
-<%= link_to "Example link to dashboard", controller: :pages, action: :dashboard %>
+<div class="container">
+	<div id="home-text">My name is <input type="text" id="searchbox1" class="form-control"> and I am going to do the <input type="text" id="searchbox2" class="form-control"> to raise money for <input type="text" id="searchbox3" class="form-control">. <a href="#" class="btn btn-default home-button"> <span class="glyphicon glyphicon-chevron-right"></span></a></div>
+</div>
