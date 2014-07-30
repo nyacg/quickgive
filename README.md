@@ -9,10 +9,12 @@ A platform for allowing very quick donations via social media.
 1. Signup as campaigner - done
 2. Login/logout as campaigner - done
 3. Create campaign - needs more info
-4. Authenticate with twitter
+4. Authenticate with twitter - not done
+5. Add paypal to campaigner - not done
 
 #### NEW DONATOR FLOW
 1. Register as donor - done
+2. Add paypal to donor - not done
 2. Upgrade to full account (donor to campaigner) - not done
 
 #### EXISTING DONATOR FLOW
