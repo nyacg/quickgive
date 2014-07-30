@@ -6,13 +6,25 @@
 	</div>
 	<div class="col-md-6 sign-up-socmedia">
 		<div class="col-md-12" id="twitter">
-			<h3>Twitter <a href="#" class="btn btn-primary btn-success sign-up-buttons"><span class="glyphicon glyphicon-ok"></span> Connecter to Twitter</a></h3>
+      <% if current_user.twitter_authentication? %>
+        <h3>Twitter <a href="#" class="btn btn-primary btn-success sign-up-buttons"><span class="glyphicon glyphicon-ok"></span> Connected to Twitter</a></h3>
+      <% else %>
+        <h3>Twitter <a href="/auth/twitter" class="btn btn-primary btn-primary sign-up-buttons"><span class="glyphicon"></span> Connect to Twitter</a></h3>
+      <% end %>
 		</div>
 		<div class="col-md-12" id="facebook">
-			<h3>Facebook <a href="#" class="btn btn-primary btn-primary sign-up-buttons"> Connect to Facebook</a></h3>
+      <% if current_user.facebook_authentication? %>
+        <h3>Facebook <a href="#" class="btn btn-primary btn-success sign-up-buttons"><span class="glyphicon glyphicon-ok"></span> Connected to Facebook</a></h3>
+      <% else %>
+        <h3>Facebook <a href="/auth/facebook" class="btn btn-primary btn-primary sign-up-buttons"><span class="glyphicon"></span> Connect to Facebook</a></h3>
+      <% end %>
 		</div>
 		<div class="col-md-12" id="instagram">
-			<h3>Instagram <a href="#" class="btn btn-primary btn-primary sign-up-buttons"> Connect to Instagram</a></h3>
+      <% if current_user.instagram_authentication? %>
+        <h3>Instagram <a href="#" class="btn btn-primary btn-success sign-up-buttons"><span class="glyphicon glyphicon-ok"></span> Connected to Instagram</a></h3>
+      <% else %>
+        <h3>Instagram <a href="#" class="btn btn-primary btn-primary sign-up-buttons"><span class="glyphicon"></span> Connect to Instagram</a></h3>
+      <% end %>
 		</div>
 		<p class="col-md-12 text-info">
 			</br>*Alternatively, you can connect these later.

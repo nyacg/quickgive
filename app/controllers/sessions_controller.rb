@@ -47,13 +47,13 @@ class SessionsController < ApplicationController
       if user
         authenticate user
         redirect_to root_path
-      # Otherwise create a new account, add as authentication method & take us to Veko's page
+      # Otherwise create a new account, add as authentication method
       else
-        @donor = User.new_donor
-        @donor.authentications = [auth_class.create(uid: auth.uid)]
-        @donor.save
-        authenticate(@donor)
-        redirect_to new_donor_path
+        @campaigner = User.new_campaigner
+        @campaigner.authentications = [auth_class.create(uid: auth.uid)]
+        @campaigner.save
+        authenticate(@campaigner)
+        redirect_to root_path
       end
     end
   end
