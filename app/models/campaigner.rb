@@ -5,6 +5,7 @@ class Campaigner
   before_save :encrypt_password
 
   many :campaigns
+  many :donors
   key :email,         String, required: true, unique: true
   key :first_name,    String, required: true
   key :last_name,     String, required: true

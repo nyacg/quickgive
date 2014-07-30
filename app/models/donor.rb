@@ -2,6 +2,7 @@ class Donor
   include MongoMapper::Document
 
   many :payments
+  belongs_to :campaigner
   key :service,           String
   key :username,          String
 
