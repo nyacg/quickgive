@@ -4,21 +4,27 @@ quickgive
 A platform for allowing very quick donations via social media.
 
 
+Campaigner = for viewing full dashboard.
+Donator = a social login. One campaigner can have many donors.
+
 ## Backend Flow
 #### CAMPAIGNER FLOW
 1. Signup as campaigner - done
 2. Login/logout as campaigner - done
 3. Create campaign - needs more info
-4. Authenticate with twitter - not done
-5. Add paypal to campaigner - not done
+4. Authenticate with twitter - not done - adding child donors
+5. Donate (using paypal from any child donor)
 
 #### NEW DONATOR FLOW
 1. Register as donor - done
 2. Add paypal to donor - not done
-2. Upgrade to full account (donor to campaigner) - not done
+3. Link to a proper account - adding parent contributor
 
 #### EXISTING DONATOR FLOW
-1. Donate - not done
+1. Donate - done
+
+### SOCIAL INTEGRATION
+1. Real-time twitter stream listener - not done
 
 ## URLs
 ### Campaigners Registration/Login
