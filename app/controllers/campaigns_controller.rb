@@ -3,21 +3,27 @@ class CampaignsController < ApplicationController
   def create
     require_authentication!
 
-    @campaign = Campaign.new title: params[:title], slug: params[:slug], campaigner: current_user
+    @campaign = Campaign.new params[:campaign]
     if @campaign.save
       redirect_to campaign_path(@campaign)
     else
-      message = "Error(s): " + @campaign.errors.map {|k,v| "#{k}: #{v}"}.join(",")
-      redirect_to new_campaign_path, flash: {error: message}
+      render 'new'
     end
+  end
+
+  # GET /campaigns/new
+  def new
+    require_authentication!
+    @campaign = Campaign.new
   end
 
   # GET /campaigns/:campaign_id
   def show
+    @campaign = Campaign.find params[:id]
     if authenticated?
-      render :show_donor
-    else
       render :show
+    else
+      render :show_donor
     end
   end
 
