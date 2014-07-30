@@ -4,15 +4,27 @@
 				<h2 class = "page-header" id="dashboard-acc-heading">Accounts</h2>
 				<div class="dashboard-socialmedia">
 					<h4 class="dashboard-text">Twitter</h4>
-					<a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-ok"> </span> Connected to Twitter</a>
+          <% if current_user.twitter_authentication? %>
+            <a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-ok"> </span> Connected to Twitter</a>
+          <% else %>
+            <a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-remove"> </span> Not Connected to Twitter</a>
+          <% end %>
 				</div>
 				<div class="dashboard-socialmedia">
 					<h4 class="dashboard-text">Facebook</h4>
-					<a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-ok"> </span> Connected to Facebook</a>
+          <% if current_user.facebook_authentication? %>
+            <a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-ok"> </span> Connected to Facebook</a>
+          <% else %>
+            <a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-remove"> </span> Not Connected to Facebook</a>
+          <% end %>
 				</div>
 				<div class="dashboard-socialmedia">
 					<h4 class="dashboard-text">Instagram</h4>
-					<a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-ok"> </span> Connected to Instagram</a>
+          <% if current_user.instagram_authentication? %>
+            <a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-ok"> </span> Connected to Instagram</a>
+          <% else %>
+            <a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-remove"> </span> Not Connected to Instagram</a>
+          <% end %>
 				</div>
 			</div>
 			<div class="col-md-7 col-md-offset-1">
@@ -33,29 +45,31 @@
 				</div>
 			</div>
 		</div>
-		<div class="row dashboard2">
-			<h2 class = "page-header">My Campaigns</h2>
-			<table class="table dashboard-campaigns">
-				<thead>
-					<tr>
-						<th>Campaign Name</th>
-						<th>Start time</th>
-						<th>Finnish time</th>
-						<th>Charity sponsored</th>
-						<th>Raised so far</th>
-					</tr>
-				</thead>
-				<tbody>
-          <% @campaigns.each do |campaign| %>
+    <% if campaigner? %>
+      <div class="row dashboard2">
+        <h2 class = "page-header">My Campaigns</h2>
+        <table class="table dashboard-campaigns">
+          <thead>
             <tr>
-              <td><%= link_to campaign.title, campaign_path(campaign) %></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <th>Campaign Name</th>
+              <th>Start time</th>
+              <th>Finnish time</th>
+              <th>Charity sponsored</th>
+              <th>Raised so far</th>
             </tr>
-          <% end %>
-				</tbody>
-			</table>
-		</div>
+          </thead>
+          <tbody>
+            <% @campaigns.each do |campaign| %>
+              <tr>
+                <td><%= link_to campaign.title, campaign_path(campaign) %></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
 	</div>

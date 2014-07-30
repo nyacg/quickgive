@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   #   password: foobar
   # }
   def create
-    @campaigner = Campaigner.authenticate params[:email], params[:password]
+    @campaigner = PasswordAuthentication.authenticate params[:email], params[:password]
     if @campaigner
       authenticate @campaigner
       redirect_to root_path

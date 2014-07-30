@@ -1,22 +1,20 @@
-class Campaigner
+class PasswordAuthentication < Authentication
   include MongoMapper::Document
+
+  belongs_to :user
+
+  key :email,         String, required: true, unique: true
+  key :password_hash, String
+  key :password_salt, String
 
   attr_accessor :password
   before_save :encrypt_password
   validates_presence_of :password
 
-  many :campaigns
-  many :donors
-  key :email,         String, required: true, unique: true
-  key :first_name,    String, required: true
-  key :last_name,     String, required: true
-  key :password_hash, String
-  key :password_salt, String
-
   def self.authenticate(email, password)
-    user = first email: email
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-      user
+    authentication = first email: email
+    if authentication && authentication.password_hash == BCrypt::Engine.hash_secret(password, authentication.password_salt)
+      authentication.user
     else
       nil
     end

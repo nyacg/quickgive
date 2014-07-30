@@ -1,0 +1,2 @@
+class InstagramAuthentication < Authentication
+end

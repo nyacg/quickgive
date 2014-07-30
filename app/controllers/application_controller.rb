@@ -5,10 +5,14 @@ class ApplicationController < ActionController::Base
   # TODO This is a really bad idea...
   skip_before_filter :verify_authenticity_token
 
-  helper_method :authenticated?, :current_user
+  helper_method :authenticated?, :current_user, :campaigner?
 
   def authenticated?
     not session[:user].nil?
+  end
+
+  def campaigner?
+    authenticated? and current_user.campaigner?
   end
 
   def authenticate(user)
@@ -20,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    authenticated? && Campaigner.find(session[:user])
+    authenticated? && User.find(session[:user])
   end
 
   def require_authentication!

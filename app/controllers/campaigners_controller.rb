@@ -2,7 +2,8 @@ class CampaignersController < ApplicationController
   # GET /campaigners/new
   # campaigners/new.html.erb
   def new
-    @campaigner = Campaigner.new
+    @campaigner = User.new_campaigner
+    @campaigner.authentications = [PasswordAuthentication.new]
   end
 
   # POST /campaigners
@@ -11,24 +12,14 @@ class CampaignersController < ApplicationController
   #   password: test
   # }
   def create
-    @campaigner = Campaigner.new params[:campaigner]
+    authentication = PasswordAuthentication.new params[:user].delete(:authentications)
+    @campaigner = User.new_campaigner params[:user]
+    @campaigner.authentications = [authentication]
     if @campaigner.save
       redirect_to root_path
     else
+      raise @campaigner.errors
       render 'new'
-    end
-  end
-
-  # POST /campaigners/add_donor
-  # Add to current user
-  def add_donor
-    @campaigner = current_user
-    @campaigner.donors += Donor.find params[:donor]
-    if @campaigner.save
-      redirect_to root_path
-    else
-      message = "Error(s): " + @campaigner.errors.map {|k,v| "#{k}: #{v}"}.join(",")
-      redirect_to root_path, flash: {error: message}
     end
   end
 end
