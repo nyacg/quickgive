@@ -3,5 +3,5 @@ class TwitterAuthentication < Authentication
 
   belongs_to :user
 
-  key :username, String, required: true
+  key :uid, String, required: true
 end

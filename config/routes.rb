@@ -75,4 +75,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  get "/auth/:provider/callback" => "sessions#create_oauth"
 end

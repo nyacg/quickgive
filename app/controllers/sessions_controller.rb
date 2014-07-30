@@ -23,4 +23,38 @@ class SessionsController < ApplicationController
   # GET /sessions/new
   def new
   end
+
+  def create_oauth
+    auth = request.env["omniauth.auth"]
+    auth_class =  case auth.provider
+                  when "twitter"
+                    TwitterAuthentication
+                  when "facebook"
+                    FacebookAuthentication
+                  else
+                    raise auth.provider.inspect
+                  end
+
+    # If loged in, add as authentication method
+    if authenticated?
+      user = current_user
+      user.authentications.push auth_class.new(uid: auth.uid)
+      redirect_to root_path
+    # Else try and log in
+    else
+      user = auth_class.authenticate auth.uid
+      # Otherwise, see if there's an account to log in as
+      if user
+        authenticate user
+        redirect_to root_path
+      # Otherwise create a new account, add as authentication method & take us to Veko's page
+      else
+        @donor = User.new_donor
+        @donor.authentications = [auth_class.create(uid: auth.uid)]
+        @donor.save
+        authenticate(@donor)
+        redirect_to new_donor_path
+      end
+    end
+  end
 end

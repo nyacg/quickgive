@@ -53,3 +53,6 @@ gem "daemons-rails"
 
 gem "tweetstream"
 gem "twitter"
+
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
