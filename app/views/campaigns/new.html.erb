@@ -1,25 +1,52 @@
-<h1>New campaign</h1>
-
-<% if @campaign.errors.any? %>
-<ul>
-  <% @campaign.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
+<div class="container new-campaign">
+  <h1 class="page-header">Add a campaign</h1>
+  <% if @campaign.errors.any? %>
+  <ul>
+    <% @campaign.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
   <% end %>
-</ul>
-<% end %>
-
-<%= form_for @campaign, url: {action: :create} do |f| %>
-  <p>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :slug %>
-    <%= f.text_field :slug %>
-  </p>
-  <p>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </p>
-  <%= f.submit "Signup" %>
-<% end %>
+  <%= form_for @campaign, url: {action: :create} do |f| %>
+    <h4>
+      <%= f.label :title, nil, class: "new-campaign-label" %>
+      <%= f.text_field :title, class: "new-campaign-text-field" %>
+    </h4>
+    <h4>
+      <%= label_tag :Event, nil, class: "new-campaign-label" %>
+      <%= text_field_tag :Event, nil, class: "new-campaign-text-field" %>
+    </h4>
+    <h4>
+      <%= label_tag :date, nil, class: "new-campaign-label" %>
+      <%= text_field_tag :date, nil, class: "new-campaign-text-field" %>
+    </h4>
+    <h4>
+      <%= label_tag :distance, nil, class: "new-campaign-label" %>
+      <%= text_field_tag :distance, nil, class: "new-campaign-text-field" %>
+    </h4>
+    <h4>
+      <%= f.label :description, nil, class: "new-campaign-label" %>
+      <%= f.text_area :description, class: "new-campaign-text-area" %>
+    </h4>
+    <h4>
+      <%= label_tag "Your target", nil, class: "new-campaign-label" %>
+      <%= text_field_tag :target, nil, class: "new-campaign-text-field" %>
+    </h4>
+    <h4>
+      <%= label_tag "Initial donation", nil, class: "new-campaign-label" %>
+      <%= text_field_tag :initial, nil, class: "new-campaign-text-field" %>
+    </h4>
+    <h4>
+      <%= label_tag "Stretch goal ammount", nil, class: "new-campaign-label" %>
+      <%= text_field_tag :strgoalamm, nil, class: "new-campaign-text-field" %>
+    </h4>
+    <h4>
+      <%= label_tag "Stretch goal description", nil, class: "new-campaign-label" %>
+      <%= text_area_tag :strgoaldesc, nil, class: "new-campaign-text-area" %>
+    </h4>
+    <h5 class="text-muted">
+      Add more Stretch Goals <span class="glyphicon glyphicon-plus"></span>
+    </h5>
+    <%= f.submit "Create campaign", class: "btn btn-default Signup" %>
+  <% end %>
+</div>
