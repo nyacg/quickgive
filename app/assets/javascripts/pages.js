@@ -1,5 +1,5 @@
 $(function() {
-  $("#searchbox3").autocomplete({
+  $("#searchbox3, #campaign_charity").autocomplete({
     source: function(request, response) {
       $.ajax({
         url: "/charities/search",

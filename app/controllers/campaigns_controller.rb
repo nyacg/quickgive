@@ -6,6 +6,7 @@ class CampaignsController < ApplicationController
     values = params[:campaign]
     values[:slug] = values[:title].parameterize
     values[:date] = Chronic.parse values[:date]
+    values[:charity] = Charity.find_by_title values[:charity].upcase
   
     @campaign = Campaign.new values
     @campaign.user = current_user
@@ -28,7 +29,7 @@ class CampaignsController < ApplicationController
   def show
     @campaign = Campaign.find params[:id]
     @strgoaldesc = @campaign.strgoaldesc
-    @strgoaldesc[0] = @strgoaldesc[0].downcase
+    @strgoaldesc[0] = @strgoaldesc[0].downcase unless @strgoal.nil?
     if @campaign.user == current_user
       render :show_owner
     else

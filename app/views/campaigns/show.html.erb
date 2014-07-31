@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-1 text-container">
 				<h2><%= @campaign.user.first_name %> <%= @campaign.user.last_name %></h2>
-				<h3>is rasising money for <strong><a>TODO YRS</a></strong> by doing <strong><a>TODO the London Marathon</a></strong> on <strong><%= @campaign.date.to_formatted_s(:long_ordinal)   %></strong></h3>
+				<h3>is rasising money for <strong><a><%= @campaign.charity.title.titleize %></a></strong> by doing <strong><a><%= @campaign.title %></a></strong> on <strong><%= @campaign.date.to_formatted_s(:long_ordinal) unless @campaign.date.nil? %></strong></h3>
 				<h3>Current total: <%= quid @campaign.total_raised %> of <%= quid @campaign.target %></h3>
 				<h3>On stretch target (<%= quid @campaign.strgoalamm %>), <%= @strgoaldesc %></h3>
 			</div>

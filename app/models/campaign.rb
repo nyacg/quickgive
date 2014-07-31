@@ -2,6 +2,7 @@ class Campaign
   include MongoMapper::Document
 
   belongs_to :user
+  belongs_to :charity
   many :payments
   key :title,       String, required: true
   key :event, String
@@ -24,7 +25,7 @@ class Campaign
   end
 
   def total_raised
-    initial + payments.inject(0) { |sum, p| sum + p.amount.to_f }
+    (initial || 0) + payments.inject(0) { |sum, p| sum + p.amount.to_f }
   end
 
   many :payments
