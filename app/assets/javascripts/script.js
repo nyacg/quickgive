@@ -1,7 +1,10 @@
 $(window).load(function (){
 	
 	var viewportHeight = $(window).height();
-	var bgHeight = $(".background-image").height();
+	var viewportWidth = $(window).width();
+	var $bg = $('.background-image');
+	var bgHeight = $bg.height();
+	var bgWidth = $bg.width();
 	var $heightElements = $(".above-container, .timeline-container");
 	//console.log(bgHeight + " " + viewportHeight);
 
@@ -26,7 +29,16 @@ $(window).load(function (){
 		//$('head').append("<style type='text/css'>.timeline:before{height: " + bgHeight-50 + "px !important;}</style>");
 	}
 
-	drawTimeline(viewportHeight, campaignData);
+	if(viewportWidth <= 991){
+		$('.timeline-container').height(viewportHeight * 1.5);
+		$('above-container').height($('.timeline-container').height() + $('.text-container').height());
+	}
+
+	/*if(viewportHeight/viewportWidth > bgHeight/bgWidth){
+		$bg.css('position', 'absolute');
+	}*/
+
+	drawTimeline($('timeline-container').height(), campaignData);
 
 	$('.timeline-badge').mouseover(function(){
 		var $panel = $(this).next('.timeline-panel');

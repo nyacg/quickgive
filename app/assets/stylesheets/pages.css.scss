@@ -101,13 +101,13 @@
 	margin: 0px;
 	line-height: inherit;
 	display: inline;
-	background-color: 0 0 0 0;
+	background: 0;
 }
 #searchbox1{
 	width: 60%;
 }
 #searchbox2{
-	width: 50%;
+	width: 67.9%;
 }
 #searchbox3{
 	width: 50%;
@@ -119,6 +119,8 @@
 	height: 1.6em;
 	margin-top: 2%;
 	font-size: 1em !important;
+	background: 0 !important;
+	border: 0 !important;
 }
 .new-campaign-label{
 	width: 20%;
@@ -138,4 +140,13 @@
 }
 .numbered{
 	float: left;
+}
+#input-id{
+	width: 30%;
+}
+.file-input{
+	width:30% !important;
+}
+.file-input .input-group{
+	width: 100%;
 }

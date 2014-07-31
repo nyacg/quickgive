@@ -18,3 +18,4 @@
 *.swp
 
 config/twitter.yml
+config/mongo.yml
