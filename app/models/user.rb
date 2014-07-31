@@ -29,6 +29,15 @@ class User
     authentications.any? { |a| a.is_a? TwitterAuthentication }
   end
 
+  def twitter_screen_name
+    if twitter_authentication?
+      twitter_authentication.screen_name
+    else
+      nil
+    end
+  end
+
+
   def twitter_authentication
     authentications.select { |a| a.is_a? TwitterAuthentication }.first
   end

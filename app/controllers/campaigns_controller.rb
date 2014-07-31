@@ -27,6 +27,8 @@ class CampaignsController < ApplicationController
   # GET /campaigns/:campaign_id
   def show
     @campaign = Campaign.find params[:id]
+    @strgoaldesc = @campaign.strgoaldesc
+    @strgoaldesc[0] = @strgoaldesc[0].downcase
     if @campaign.user == current_user
       render :show_owner
     else

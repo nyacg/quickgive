@@ -1,16 +1,6 @@
 $(window).load(function (){
 	
-	//some test data
-	var campaignData = {
-		campaignerName: "Robert Chandler",
-		campaignerTwitter: "nyacg",
-		campaignerFacebook: "robert.j.h.chandler",
-		campaignerInstagram: "nyahipster",
-		initialTarget: 300,
-		stretchTarget: 500,
-		currentTotal: 150,
-		donors: [{name: "Robert", date: "01/02/14", amount: 50, via: "Twitter"}, {name: "Harry", date: "07/02/14", amount: 50, via: "Facebook"}, {name: "Vesko", date: "07/02/14", amount: 50, via: "Facebook"}]
-	};
+  var data_url = window.location.href + ".json";
 
 	//get some commonly used selectors and values as variables
 	var $bg = $('.background-image');
@@ -63,7 +53,10 @@ $(window).load(function (){
 			timelineHeight = viewportHeight * 1.5;
 		}
 
-		drawTimeline(timelineHeight, campaignData);
+    $.get(data_url).success(function(data) {
+      drawTimeline(timelineHeight, data);
+    });
+		// drawTimeline(timelineHeight, campaignData);
 		
 		/*if(viewportHeight/viewportWidth > bgHeight/bgWidth){
 			$bg.css('position', 'absolute');
@@ -95,7 +88,7 @@ $(window).load(function (){
 			var donor = campaignData.donors[i];
 			runningTotal += donor.amount;
 			//console.log(runningTotal);
-			var $badge = $("<li><div class='timeline-badge small primary'>"/*<i class='glyphicon glyphicon-gbp'></i>*/+"</div><div class='timeline-panel'><div class='timeline-heading'><h4 class='timeline-title'>" + donor.name + "</h4><p><small class='text-muted'><i class='glyphicon glyphicon-time'></i> " + donor.date + " hours ago via " + donor.via + "</small></p></div><div class='timeline-body'><p>£" + parseFloat(Math.round(donor.amount * 100) / 100).toFixed(2) + "</p></div></div></li>");
+			var $badge = $("<li><div class='timeline-badge small primary'>"/*<i class='glyphicon glyphicon-gbp'></i>*/+"</div><div class='timeline-panel'><div class='timeline-heading'><h4 class='timeline-title'>" + donor.name + "</h4><p><small class='text-muted'><i class='glyphicon glyphicon-time'></i> " + donor.date + " ago via " + donor.via + "</small></p></div><div class='timeline-body'><p>£" + parseFloat(Math.round(donor.amount * 100) / 100).toFixed(2) + "</p></div></div></li>");
 			$('.timeline').append($badge);
 
 			var height = 0;

@@ -13,6 +13,7 @@ class Campaign
   key :strgoaldesc, String
   key :slug,        String, required: true, indexed: true
   key :description, String
+  timestamps!
 
   def id
     slug
@@ -23,7 +24,7 @@ class Campaign
   end
 
   def total_raised
-    payments.inject(0) { |sum, p| sum + p.amount.to_f }
+    initial + payments.inject(0) { |sum, p| sum + p.amount.to_f }
   end
 
   many :payments

@@ -7,6 +7,7 @@ class Payment
   belongs_to :campaign
   key :amount,  Float,  required: true
   key :time,    Time,   required: true
+  key :via,     String
 
   def notify_user
     user.notify "Your donation of £#{amount} to #{campaign.title} was successful!"

@@ -1,7 +1,8 @@
 class Status
   attr_accessor :campaign
 
-  def initialize text
+  def initialize text, via
+    @via = via
     hashtags = text.scan(/#\S+/)
 
     campaigns = hashtags.map do |hashtag|
@@ -17,6 +18,6 @@ class Status
     @donor = donor
 
     # Perform the donation
-    Payment.create(amount: @amount.to_f, time: Time.now, campaign: @campaign, user: @donor) unless @donor.nil?
+    Payment.create(amount: @amount.to_f, time: Time.now, campaign: @campaign, user: @donor, via: @via) unless @donor.nil?
   end
 end

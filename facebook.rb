@@ -10,7 +10,7 @@ while true do
     end
 
     statuses.each do |status|
-      @status = Status.new status["message"]
+      @status = Status.new status["message"], "facebook"
       @donor = User.find_by_facebook_uid status["from"]["id"]
       next if @donor.nil? or @status.campaign.nil?
       @status.donate(@donor)

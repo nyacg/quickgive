@@ -16,7 +16,7 @@
 
 # while($running) do
   TweetStream::Client.new.track("#quick_give") do |status|
-    @status = Status.new status.text
+    @status = Status.new status.text, "twitter"
     @donor = User.find_by_twitter_screen_name status.user.screen_name
 
     # If they're not registered
