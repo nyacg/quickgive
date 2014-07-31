@@ -12,7 +12,7 @@ $(window).load(function (){
 		campaignerName: "Robert Chandler",
 		campaignerTwitter: "nyacg",
 		campaignerFacebook: "robert.j.h.chandler",
-		
+		campaignerInstagram: "nyahipster",
 		initialTarget: 300,
 		stretchTarget: 500,
 		currentTotal: 150,
@@ -22,23 +22,29 @@ $(window).load(function (){
 	$('.timeline-badge').hide();
 	//console.log(campaignData);
 	
-	if(bgHeight >= viewportHeight*1.1){
-		$heightElements.height(viewportHeight*1.1);
+	if(bgHeight >= viewportHeight * 1.1){
+		$heightElements.height(viewportHeight * 1.1);
 	} else {
-		$heightElements.height(bgHeight-50);
+		$heightElements.height(bgHeight - 50);
 		//$('head').append("<style type='text/css'>.timeline:before{height: " + bgHeight-50 + "px !important;}</style>");
 	}
 
+	var timelineHeight = viewportHeight;
+
 	if(viewportWidth <= 991){
+		console.log(viewportWidth + " " + viewportHeight);
 		$('.timeline-container').height(viewportHeight * 1.5);
-		$('above-container').height($('.timeline-container').height() + $('.text-container').height());
+		console.log($('.timeline-container').height() + $('.text-container').height());
+		$('above-container').height(20);
+		timelineHeight = viewportHeight * 1.5;
 	}
 
+	drawTimeline(timelineHeight, campaignData);
+	
 	/*if(viewportHeight/viewportWidth > bgHeight/bgWidth){
 		$bg.css('position', 'absolute');
 	}*/
 
-	drawTimeline($('timeline-container').height(), campaignData);
 
 	$('.timeline-badge').mouseover(function(){
 		var $panel = $(this).next('.timeline-panel');
@@ -51,7 +57,6 @@ $(window).load(function (){
 		}
 	});
 	
-
 	function drawTimeline(viewportHeight, campaignData){
 		var lineHeight = viewportHeight*0.75;
 		var progHeight = 0;
