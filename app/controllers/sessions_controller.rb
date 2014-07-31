@@ -45,7 +45,6 @@ class SessionsController < ApplicationController
     when "facebook"
       first_name = auth.extra.first_name
       last_name = auth.extra.last_name
-      raise auth.provider.inspect
     end
 
     # If loged in, add as authentication method
