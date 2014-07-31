@@ -118,9 +118,15 @@
 .home-button{
 	height: 1.6em;
 	margin-top: 2%;
-	font-size: 1em !important;
+	font-size: 2em !important;
 	background: 0 !important;
 	border: 0 !important;
+}
+.home-button:active{
+	background: 0 !important;
+	border: 0 !important;
+	box-shadow: none !important;
+	margin-left: 5px;
 }
 .new-campaign-label{
 	width: 20%;
