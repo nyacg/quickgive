@@ -101,6 +101,7 @@
 	margin: 0px;
 	line-height: inherit;
 	display: inline;
+	background-color: 0 0 0 0;
 }
 #searchbox1{
 	width: 60%;
@@ -122,25 +123,19 @@
 .new-campaign-label{
 	width: 20%;
 	min-width: 15em;
+	float: left;
 }
-#distance, #date, #Event, #campaign_title, #campaign_description, #target, #initial, #strgoalamm, #strgoaldesc{
+#distance, #date, #Event, #campaign_title, #campaign_description, #strgoaldesc{
 	width: 30%;
-	border: 0px;
-	box-shadow: 0 0 0 0;
-	border-radius: 0 0 0 0;
-	font-size: 1em;
-	height: auto;
-	color: black;
-	padding: 0px;
-	border-bottom: 1px solid black;
-	margin: 0px;
-	line-height: inherit;
-	display: inline;
-	margin-top: 5px;
-}
-#distance:focus{
-	border: 0px;
+	min-width: 22em;
 }
 .Signup{
-	width: 55%;
+	width: 54%;
+}
+.input-group{
+	width:30%;
+	min-width: 17em;
+}
+.numbered{
+	float: left;
 }

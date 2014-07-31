@@ -6,6 +6,10 @@ $(window).load(function (){
 	//console.log(bgHeight + " " + viewportHeight);
 
 	var campaignData = {
+		campaignerName: "Robert Chandler",
+		campaignerTwitter: "nyacg",
+		campaignerFacebook: "robert.j.h.chandler",
+		
 		initialTarget: 300,
 		stretchTarget: 500,
 		currentTotal: 150,
@@ -72,13 +76,13 @@ $(window).load(function (){
 			$badge.css('top', height);
 		}
 
-		$target = $("<li class='shownli'><div class='timeline-badge danger' style='top:-14px'></div><div class='timeline-panel shown'><div class='timeline-heading'><h4 class='timeline-title'>Target to raise £" + campaignData.initialTarget + "</h4><p><small class='text-muted'><i class='glyphicon glyphicon-time'></i> reached on.... </small></p></div><div class='timeline-body'><p></p></div></div></li>");
+		$target = $("<li class='shownli'><div class='timeline-badge " + (campaignData.currentTotal >= campaignData.initialTarget ? 'success' : 'danger')  + "' style='top:-14px'></div><div class='timeline-panel shown'><div class='timeline-heading'><h4 class='timeline-title'>Target to raise £" + campaignData.initialTarget + "</h4></div><div class='timeline-body'></div></div></li>");
 		$target.css('top', lineHeight*0.8 - 10 + 'px');
 
-		$current = $("<li class='shownli timeline-inverted'><div class='timeline-panel shown'><div class='timeline-heading'><h4 class='timeline-title'>Current total £" + campaignData.currentTotal + "</h4></div><div class='timeline-body'><p></p></div></div></li>");
+		$current = $("<li class='shownli timeline-inverted'><div class='timeline-panel shown'><div class='timeline-heading'><h4 class='timeline-title'>Current total £" + campaignData.currentTotal + "</h4></div><div class='timeline-body'></div></div></li>");
 		$current.css('top', progHeight - 10 + 'px');
 
-		$stretch = $("<li class='shownli timeline-inverted'><div class='timeline-badge danger' style='top:-14px'></div><div class='timeline-panel shown'><div class='timeline-heading'><h4 class='timeline-title'>Stretch target £" + campaignData.stretchTarget + "</h4></div><div class='timeline-body'><p></p></div></div></li>");
+		$stretch = $("<li class='shownli timeline-inverted'><div class='timeline-badge " + (campaignData.currentTotal >= campaignData.stretchTarget ? 'success' : 'danger')  + "' style='top:-14px'></div><div class='timeline-panel shown'><div class='timeline-heading'><h4 class='timeline-title'>Stretch target £" + campaignData.stretchTarget + "</h4></div><div class='timeline-body'></div></div></li>");
 		$stretch.css('top', lineHeight - 10 + 'px');
 
 		$('.timeline').append($target).append($current).append($stretch);
