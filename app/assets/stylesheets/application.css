@@ -30,6 +30,11 @@ body {
 	left: 0;
 }
 
+.above-visuals {
+	z-index: 50;
+	position: relative;
+}
+
 .navbar {
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
@@ -45,9 +50,9 @@ body {
 }
 
 .text-container {
-	color: white;
+	color: #DDD;
 	z-index: 50;
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(0, 0, 0, 0.3);
 	padding: 15px;
 }
 
