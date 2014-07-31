@@ -19,7 +19,7 @@ class CampaignersController < ApplicationController
       authenticate @campaigner
       redirect_to root_path
     else
-      raise @campaigner.errors
+      raise @campaigner.errors.inspect
       render 'new'
     end
   end
