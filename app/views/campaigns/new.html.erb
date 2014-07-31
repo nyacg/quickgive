@@ -37,6 +37,10 @@
       </div>
     </h4>
     <h4>
+      <%= label_tag "Upload image", nil, class: "new-campaign-label" %>
+      <input id="input-id" type="file" class="file" data-preview-file-type="text">
+    </h4>
+    <h4>
       <div class="numbered"><%= label_tag "Initial donation", nil, class: "new-campaign-label" %></div>
       <div class="input-group">
         <span class="input-group-addon">£</span>
@@ -62,3 +66,8 @@
     <%= f.submit "Create campaign", class: "btn btn-default Signup", style: "margin-bottom: 1em;" %>
   <% end %>
 </div>
+<script>
+$(function() {
+  $( "#input-id" ).fileinput();
+});
+</script>
