@@ -34,6 +34,17 @@ class SessionsController < ApplicationController
                   else
                     raise auth.provider.inspect
                   end
+    case auth.provider
+    when "twitter"
+      name_parts = auth.info.name.split " "
+      first_name = name_parts.first
+      last_name = name_parts[1] || ""
+    when "facebook"
+      first_name = auth.extra.first_name
+      last_name = auth.extra.last_name
+    else
+      raise auth.provider.inspect
+    end
 
     # If loged in, add as authentication method
     if authenticated?
@@ -51,14 +62,14 @@ class SessionsController < ApplicationController
       else
         # Check if we're a twitter signup donor
         if request.env['omniauth.origin']
-          @donor = User.new_donor
+          @donor = User.new_donor first_name: first_name, last_name: last_name
           @donor.authentications = [auth_class.create(uid: auth.uid)]
           @donor.save
           authenticate(@donor)
           redirect_to request.env['omniauth.origin']
         # Else we're a campaigner
         else
-          @campaigner = User.new_campaigner
+          @campaigner = User.new_campaigner first_name: first_name, last_name: last_name
           @campaigner.authentications = [auth_class.create(uid: auth.uid)]
           @campaigner.save
           authenticate(@campaigner)
