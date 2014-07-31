@@ -17,5 +17,5 @@ end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :twitter, SOCIAL_CONFIG["consumer_key"], SOCIAL_CONFIG["consumer_secret"]
-  provider :facebook, SOCIAL_CONFIG['facebook_key'], SOCIAL_CONFIG['facebook_secret']
+  provider :facebook, SOCIAL_CONFIG['facebook_key'], SOCIAL_CONFIG['facebook_secret'], scope: [:offline_access, :user_status, :publish_actions]
 end

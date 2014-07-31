@@ -56,5 +56,5 @@ gem "twitter"
 
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
-
+gem 'koala'
 gem 'jquery-ui-rails'
