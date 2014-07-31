@@ -1,0 +1,28 @@
+defaults: &defaults
+<<<<<<< Updated upstream
+  host: localhost
+=======
+  host: 192.168.123.91
+>>>>>>> Stashed changes
+  port: 27017
+  options:
+    w: 1
+    pool_size: 1
+    slave_ok: false
+    ssl: false
+
+development:
+  <<: *defaults
+  database: quickgive_development
+
+test:
+  <<: *defaults
+  database: quickgive_test
+  w: 0
+
+# set these environment variables on your prod server
+production:
+  <<: *defaults
+  database: quickgive
+  username: <%= ENV['MONGO_USERNAME'] %>
+  password: <%= ENV['MONGO_PASSWORD'] %>
