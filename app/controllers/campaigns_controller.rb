@@ -3,7 +3,11 @@ class CampaignsController < ApplicationController
   def create
     require_authentication!
 
-    @campaign = Campaign.new params[:campaign]
+    values = params[:campaign]
+    values[:slug] = values[:title].parameterize
+    values[:date] = Chronic.parse values[:date]
+  
+    @campaign = Campaign.new values
     @campaign.user = current_user
     if @campaign.save
       redirect_to campaign_path(@campaign)

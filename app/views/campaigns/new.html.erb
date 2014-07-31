@@ -9,59 +9,59 @@
   <% end %>
   <%= form_for @campaign, url: {action: :create} do |f| %>
     <h4>
-      <%= f.label :title, nil, class: "new-campaign-label" %>
+      <%= f.label :title, class: "new-campaign-label" %>
       <%= f.text_field :title, class: "form-control", value: @prefilled["action"] %>
     </h4>
     <h4>
-      <%= label_tag :Event, nil, class: "new-campaign-label" %>
-      <%= text_field_tag :Event, nil, class: "form-control" %>
+      <%= f.label :event, class: "new-campaign-label" %>
+      <%= f.text_field :event, class: "form-control" %>
     </h4>
     <h4>
-      <%= label_tag :date, nil, class: "new-campaign-label" %>
-      <%= text_field_tag :date, nil, class: "form-control" %>
+      <%= f.label :date, class: "new-campaign-label" %>
+      <%= f.text_field :date, class: "form-control" %>
     </h4>
     <h4>
-      <%= label_tag :distance, nil, class: "new-campaign-label" %>
-      <%= text_field_tag :distance, nil, class: "form-control" %>
+      <%= f.label :location, class: "new-campaign-label" %>
+      <%= f.text_field :location, class: "form-control" %>
     </h4>
     <h4>
-      <%= f.label :description, nil, class: "new-campaign-label" %>
+      <%= f.label :description, class: "new-campaign-label" %>
       <%= f.text_area :description, class: "form-control new-campaign-text-area", rows: "3"%>
     </h4>
     <h4>
-      <div class="numbered"><%= label_tag "Your target", nil, class: "new-campaign-label" %></div>
+      <div class="numbered"><%= f.label "Your target", class: "new-campaign-label" %></div>
       <div class="input-group">
         <span class="input-group-addon">£</span>
-        <%= text_field_tag :target, nil, class: "form-control" %> 
+        <%= f.text_field :target, class: "form-control" %> 
         <span class="input-group-addon">.00</span>
       </div>
     </h4>
     <h4>
-      <%= label_tag "Upload image", nil, class: "new-campaign-label" %>
+      <%= f.label "Upload image", class: "new-campaign-label" %>
       <input id="input-id" type="file" class="file" data-preview-file-type="text">
     </h4>
     <h4>
-      <div class="numbered"><%= label_tag "Initial donation", nil, class: "new-campaign-label" %></div>
+      <div class="numbered"><%= f.label "Initial donation", class: "new-campaign-label" %></div>
       <div class="input-group">
         <span class="input-group-addon">£</span>
-        <%= text_field_tag :initial, nil, class: "form-control" %>
+        <%= f.text_field :initial, class: "form-control" %>
         <span class="input-group-addon">.00</span>
       </div>
     </h4>
     <h4>
-      <div class="numbered"><%= label_tag "Stretch goal ammount", nil, class: "new-campaign-label" %></div>
+      <div class="numbered"><%= f.label "Stretch goal amount", class: "new-campaign-label" %></div>
       <div class="input-group">
         <span class="input-group-addon">£</span>
-        <%= text_field_tag :strgoalamm, nil, class: "form-control" %>
+        <%= f.text_field :strgoalamm, class: "form-control" %>
         <span class="input-group-addon">.00</span>
       </div>
     </h4>
     <h4>
-      <%= label_tag "Stretch goal description", nil, class: "new-campaign-label" %>
-      <%= text_area_tag :strgoaldesc, nil, class: "form-control new-campaign-text-area", rows: "3" %>
+      <%= f.label "Stretch goal description", class: "new-campaign-label" %>
+      <%= f.text_area :strgoaldesc, class: "form-control new-campaign-text-area", rows: "3" %>
     </h4>
     <h5 class="text-muted">
-      Add more Stretch Goals <span class="glyphicon glyphicon-plus"></span>
+      <!-- Add more Stretch Goals <span class="glyphicon glyphicon-plus"></span> -->
     </h5>
     <%= f.submit "Create campaign", class: "btn btn-default Signup", style: "margin-bottom: 1em;" %>
   <% end %>

@@ -4,6 +4,13 @@ class Campaign
   belongs_to :user
   many :payments
   key :title,       String, required: true
+  key :event, String
+  key :date, Date
+  key :location, String
+  key :target, Float
+  key :initial, Float
+  key :strgoalamm, Float
+  key :strgoaldesc, String
   key :slug,        String, required: true, indexed: true
   key :description, String
 
