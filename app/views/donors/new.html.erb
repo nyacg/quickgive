@@ -1,27 +1,41 @@
 <div class="col-md-8 col-md-offset-2 container">
 	<div class="page-header">
 		<h2>
-			<div id="hi">Hello</div> <input type="text"  id="inputtingbox" class="form-control"> <sup><span class="glyphicon glyphicon-pencil"></span></sup>
+			<div id="hi">Hello</div> <input type="text"  id="inputtingbox" class="form-control" placeholder="<%= current_user.first_name %> <%= current_user.last_name %>"> <sup><span class="glyphicon glyphicon-pencil"></span></sup>
 		</h2>
 	</div>
 	<div class="col-md-6 sign-up-socmedia">
 		<div class="col-md-12 sign-up-margin" id="twitter">
-			<h4>Twitter <a href="#" class="btn btn-primary btn-success sign-up-buttons"><span class="glyphicon glyphicon-ok"></span> Connected to Twitter</a></h4>
+      <% if current_user.twitter_authentication? %>
+        <h4>Twitter <a href="#" class="btn btn-primary btn-success sign-up-buttons"><span class="glyphicon glyphicon-ok"></span> Connected to Twitter</a></h4>
+      <% else %>
+        <h4>Twitter <a href="<%= @twitter_url %>" class="btn btn-primary btn-primary sign-up-buttons"><span class="glyphicon"></span> Connect to Twitter</a></h4>
+      <% end %>
 		</div>
 		<div class="col-md-12 sign-up-margin" id="facebook">
-			<h4>Facebook <a href="#" class="btn btn-primary btn-success btn-primary sign-up-buttons"><span class="glyphicon glyphicon-ok"></span> Connected to Facebook</a></h4>
+      <% if current_user.facebook_authentication? %>
+        <h4>Facebook <a href="#" class="btn btn-primary btn-success sign-up-buttons"><span class="glyphicon glyphicon-ok"></span> Connected to Facebook</a></h4>
+      <% else %>
+        <h4>Facebook <a href="<%= @facebook_url %>" class="btn btn-primary btn-primary sign-up-buttons"><span class="glyphicon"></span> Connect to Facebook</a></h4>
+      <% end %>
 		</div>
 		<div class="col-md-12 sign-up-margin" id="instagram">
-			<h4>Instagram <a href="#" class="btn btn-primary btn-primary sign-up-buttons"> Connect to Instagram</a></h4>
+      <% if current_user.instagram_authentication? %>
+        <h4>Instagram <a href="#" class="btn btn-primary btn-success sign-up-buttons"><span class="glyphicon glyphicon-ok"></span> Connected to Instagram</a></h4>
+      <% else %>
+        <h4>Instagram <a href="#" class="btn btn-primary btn-primary sign-up-buttons"><span class="glyphicon"></span> Connect to Instagram</a></h4>
+      <% end %>
 		</div>
 		<p class="col-md-12 text-info">
 			</br>*Alternatively, you can connect these later.
 		</p>
 		<div class="col-md-12">
-			<a href="#" class="btn btn-primary btn-primary sign-up-paypal"><span class="glyphicon glyphicon-hand-up"></span> Click to connect your PayPal.</a>
+			<a href="<%= @paypal_url %>" class="btn btn-primary btn-primary sign-up-paypal"><span class="glyphicon glyphicon-hand-up"></span> Click to connect your PayPal.</a>
 		</div>
+    <!--
 		<div class="col-md-12 alert alert-danger" id="error" role="alert">
 			<a href="#" class="alert-link col-md-12 text-danger">Error: Your detailes did not link with PayPal.</a>
 		</div>
+    -->
 	</div>
 </div>

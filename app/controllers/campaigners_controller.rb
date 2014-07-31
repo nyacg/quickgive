@@ -16,6 +16,7 @@ class CampaignersController < ApplicationController
     @campaigner = User.new_campaigner params[:user]
     @campaigner.authentications = [authentication]
     if @campaigner.save
+      authenticate @campaigner
       redirect_to root_path
     else
       raise @campaigner.errors

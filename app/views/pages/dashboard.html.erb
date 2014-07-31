@@ -5,7 +5,7 @@
 				<div class="dashboard-socialmedia">
 					<h4 class="dashboard-text">Twitter</h4>
           <% if current_user.twitter_authentication? %>
-            <a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-ok"> </span> Connected to Twitter</a>
+            <a href="#" class="btn btn-primary btn-success dashboard-button"><span class="glyphicon glyphicon-ok"> </span> Connected to Twitter</a>
           <% else %>
             <a href="/auth/twitter" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-remove"> </span> Not Connected to Twitter</a>
           <% end %>
@@ -13,7 +13,7 @@
 				<div class="dashboard-socialmedia">
 					<h4 class="dashboard-text">Facebook</h4>
           <% if current_user.facebook_authentication? %>
-            <a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-ok"> </span> Connected to Facebook</a>
+            <a href="#" class="btn btn-primary btn-success dashboard-button"><span class="glyphicon glyphicon-ok"> </span> Connected to Facebook</a>
           <% else %>
             <a href="/auth/facebook" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-remove"> </span> Not Connected to Facebook</a>
           <% end %>
@@ -21,7 +21,7 @@
 				<div class="dashboard-socialmedia">
 					<h4 class="dashboard-text">Instagram</h4>
           <% if current_user.instagram_authentication? %>
-            <a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-ok"> </span> Connected to Instagram</a>
+            <a href="#" class="btn btn-primary btn-success dashboard-button"><span class="glyphicon glyphicon-ok"> </span> Connected to Instagram</a>
           <% else %>
             <a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-remove"> </span> Not Connected to Instagram</a>
           <% end %>
@@ -30,18 +30,12 @@
 			<div class="col-md-7 col-md-offset-1">
 				<h2 id="dashboard-recent" class = "page-header">Recent Donations</h2>
 				<div class="donations">
-					<div id="first">
-						<%=image_tag "donation.png", class: "dashboard-donation-image"%>
-						<p class="dashboard-donation-text">You have donated £10 to HIMYM on 1st of December 2013 for the Barney campaign through Twitter.</p>
-					</div>
-					<div id="first">
-						<%=image_tag "donation.png", class: "dashboard-donation-image"%>
-						<p class="dashboard-donation-text">You have donated £10 to HIMYM on 1st of December 2013 for the Barney campaign through Twitter.</p>
-					</div>
-					<div id="first">
-						<%=image_tag "donation.png", class: "dashboard-donation-image"%>
-						<p class="dashboard-donation-text">You have donated £10 to HIMYM on 1st of December 2013 for the Barney campaign through Twitter.</p>
-					</div>
+          <% @donations.each do |donation| %>
+            <div id="first">
+              <%=image_tag "donation.png", class: "dashboard-donation-image"%>
+              <p class="dashboard-donation-text">You donated <%= quid donation.amount %> to <%= link_to donation.campaign.title, campaign_path(donation.campaign) %> <%= distance_of_time_in_words Time.now, donation.time %> ago.</p>
+            </div>
+          <% end %>
 				</div>
 			</div>
 		</div>
@@ -53,7 +47,7 @@
             <tr>
               <th>Campaign Name</th>
               <th>Start time</th>
-              <th>Finnish time</th>
+              <th>Finish time</th>
               <th>Charity sponsored</th>
               <th>Raised so far</th>
             </tr>
@@ -65,7 +59,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+                <td><%= quid campaign.total_raised %></td>
               </tr>
             <% end %>
           </tbody>
