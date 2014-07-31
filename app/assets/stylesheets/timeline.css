@@ -11,7 +11,7 @@
 .timeline:before {
   top: 0;
   bottom: 0;
-  position: absolute;
+  position: absolute; 
   content: " ";
   width: 10px;
   background-color: #e7e7e7;
