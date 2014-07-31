@@ -1,15 +1,21 @@
 <%= form_tag(controller: :sessions, action: :create, method: :post) %>
-  <p>
-    <%= label_tag :email, "Email" %>
-    <%= text_field_tag :email %>
-  </p>
-  <p>
-    <%= label_tag :password, "Password" %>
-    <%= password_field_tag :password %>
-  </p>
-  <%= submit_tag "Login" %>
-</form>
-
-<a href="/auth/twitter" class="btn btn-primary btn-info">Sign in with Twitter</a>
-<a href="/auth/facebook" class="btn btn-primary btn-info">Sign in with Facebook</a>
-<a href="/auth/instagram" class="btn btn-primary btn-info">Sign in with Instagram</a>
+<div class="container">
+	<h3 class="page-header">Log in </h3>
+  <div class="input-group" style="max-width: 400px">
+						<span class="input-group-addon glyphicon glyphicon-envelope"></span>
+						<input type="text" name="email" class="form-control glyph-input" placeholder="Email"/>
+				</div>
+				<br>
+				<div class="input-group" style="max-width: 400px">
+						<span class="input-group-addon glyphicon glyphicon-asterisk"></span>
+						<input type="password" name="password" class="form-control glyph-input" placeholder="Password"/>
+						<span class="input-group-btn">
+							<button class="btn btn-default" id="login-button" type="submit">Login</button>
+						</span>
+				</div>
+<div id="alternative">
+	<a href="/auth/twitter" class="btn btn-primary btn-info">Sign in with Twitter</a>
+	<a href="/auth/facebook" class="btn btn-primary btn-info">Sign in with Facebook</a>
+	<a href="/auth/instagram" class="btn btn-primary btn-info">Sign in with Instagram</a>
+</div>
+</div>
