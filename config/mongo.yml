@@ -1,6 +1,6 @@
 defaults: &defaults
-  host: rckrds.uk
-  port: 27018
+  host: localhost
+  port: 27017
   options:
     w: 1
     pool_size: 1

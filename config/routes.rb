@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'charities/index'
+  get 'charities/search'
 
   get 'payment/create'
 
@@ -22,9 +22,6 @@ Rails.application.routes.draw do
     post 'add_donor'
   end
   resources :donors
-
-  resources :charities do
-  end
 
   get 'payments/create'
   get 'pages/home'
