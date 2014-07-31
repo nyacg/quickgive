@@ -1,13 +1,6 @@
 $(window).load(function (){
 	
-	var viewportHeight = $(window).height();
-	var viewportWidth = $(window).width();
-	var $bg = $('.background-image');
-	var bgHeight = $bg.height();
-	var bgWidth = $bg.width();
-	var $heightElements = $(".above-container, .timeline-container");
-	//console.log(bgHeight + " " + viewportHeight);
-
+	//some test data
 	var campaignData = {
 		campaignerName: "Robert Chandler",
 		campaignerTwitter: "nyacg",
@@ -19,43 +12,64 @@ $(window).load(function (){
 		donors: [{name: "Robert", date: "01/02/14", amount: 50, via: "Twitter"}, {name: "Harry", date: "07/02/14", amount: 50, via: "Facebook"}, {name: "Vesko", date: "07/02/14", amount: 50, via: "Facebook"}]
 	};
 
-	$('.timeline-badge').hide();
-	//console.log(campaignData);
-	
-	if(bgHeight >= viewportHeight * 1.1){
-		$heightElements.height(viewportHeight * 1.1);
-	} else {
-		$heightElements.height(bgHeight - 50);
-		//$('head').append("<style type='text/css'>.timeline:before{height: " + bgHeight-50 + "px !important;}</style>");
-	}
+	//get some commonly used selectors and values as variables
+	var $bg = $('.background-image');
+	var $heightElements = $(".above-container, .timeline-container");
 
-	var timelineHeight = viewportHeight;
+	//setup the page for the screen 
+	doSizes();
 
-	if(viewportWidth <= 991){
-		console.log(viewportWidth + " " + viewportHeight);
-		$('.timeline-container').height(viewportHeight * 1.5);
-		console.log($('.timeline-container').height() + $('.text-container').height());
-		$('above-container').height(20);
-		timelineHeight = viewportHeight * 1.5;
-	}
+	//make the sizes recalculate when the screen is changes (e.g. rotated)
+	$(window).resize(function(){
+		doSizes();
+	});
 
-	drawTimeline(timelineHeight, campaignData);
-	
-	/*if(viewportHeight/viewportWidth > bgHeight/bgWidth){
-		$bg.css('position', 'absolute');
-	}*/
-
-
-	$('.timeline-badge').mouseover(function(){
+	//show the tooltip/labels things when you hover over a circle
+	$(document).on('mouseover', '.timeline-badge', function(){
 		var $panel = $(this).next('.timeline-panel');
 		$panel.show();
-	}).mouseleave(function(){
+	}).on('mouseleave', '.timeline-badge', function(){
 		var $panel = $(this).next('.timeline-panel');
 
 		if(!$panel.hasClass('shown')){
 			$(this).next('.timeline-panel').hide();
 		}
 	});
+
+	
+
+
+	function doSizes(){
+		var viewportHeight = $(window).height();
+		var viewportWidth = $(window).width();
+		var bgHeight = $bg.height();
+		var bgWidth = $bg.width();
+		var timelineHeight = 0;
+
+		if(bgHeight >= viewportHeight * 1.1 && viewportHeight > 600){
+			$heightElements.height(viewportHeight * 1.1);
+			timelineHeight = viewportHeight;
+		} else {
+			$heightElements.height(bgHeight - 100);
+			//$('head').append("<style type='text/css'>.timeline:before{height: " + bgHeight-50 + "px !important;}</style>");
+			timelineHeight = bgHeight * 0.95;
+		}
+
+
+		if(viewportWidth < 990){
+			//console.log(viewportWidth + " " + viewportHeight);
+			$('.timeline-container').height(viewportHeight * 1.2);
+			$('.above-container').css("height", /*$('.timeline-container').height() + $('.text-container').height() + "px"*/ "100%");
+			timelineHeight = viewportHeight * 1.5;
+		}
+
+		drawTimeline(timelineHeight, campaignData);
+		
+		/*if(viewportHeight/viewportWidth > bgHeight/bgWidth){
+			$bg.css('position', 'absolute');
+		}*/
+	}
+
 	
 	function drawTimeline(viewportHeight, campaignData){
 		var lineHeight = viewportHeight*0.75;
@@ -69,11 +83,13 @@ $(window).load(function (){
 		}
 
 		//console.log(progHeight/lineHeight);
-
-		$('head').append("<style type='text/css'>.timeline:before{height: " + lineHeight + "px !important;} .timeline:after{height: " + progHeight + "px !important;}</style>");
+		$('head').remove("#timeline-styling");
+		$('head').append("<style id='timeline-styling' type='text/css'>.timeline:before{height: " + lineHeight + "px !important;} .timeline:after{height: " + progHeight + "px !important;}</style>");
 	
 		var numDonors = campaignData.donors.length;
 		//console.log(numDonors);
+
+		$(".timeline").empty();
 		var runningTotal = 0;
 		for(i=0; i<numDonors; i++){
 			var donor = campaignData.donors[i];
@@ -104,4 +120,6 @@ $(window).load(function (){
 
 		$('.timeline').append($target).append($current).append($stretch);
 	}
+
+
 });
