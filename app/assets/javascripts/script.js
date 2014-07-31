@@ -17,19 +17,23 @@ $(window).load(function (){
 	
 	if(bgHeight >= viewportHeight*1.1){
 		$heightElements.height(viewportHeight*1.1);
-		drawTimeline(viewportHeight, campaignData);
 	} else {
 		$heightElements.height(bgHeight-50);
 		//$('head').append("<style type='text/css'>.timeline:before{height: " + bgHeight-50 + "px !important;}</style>");
 	}
 
+	drawTimeline(viewportHeight, campaignData);
 
 	$('.timeline-badge').mouseover(function(){
-		$(this).next('.timeline-panel').show();
+		var $panel = $(this).next('.timeline-panel');
+		$panel.show();
 	}).mouseleave(function(){
-		$(this).next('.timeline-panel').hide();
-	});
+		var $panel = $(this).next('.timeline-panel');
 
+		if(!$panel.hasClass('shown')){
+			$(this).next('.timeline-panel').hide();
+		}
+	});
 	
 
 	function drawTimeline(viewportHeight, campaignData){
@@ -39,6 +43,7 @@ $(window).load(function (){
 		if(campaignData.currentTotal <= campaignData.initialTarget){
 			progHeight = lineHeight*0.8*campaignData.currentTotal/campaignData.initialTarget;
 		} else {
+			console.log("else!");
 			progHeight = lineHeight*0.8 + lineHeight*0.2*(campaignData.currentTotal - campaignData.initialTarget)/(campaignData.stretchTarget - campaignData.initialTarget);
 		}
 
@@ -66,5 +71,16 @@ $(window).load(function (){
 
 			$badge.css('top', height);
 		}
+
+		$target = $("<li class='shownli'><div class='timeline-badge danger' style='top:-14px'></div><div class='timeline-panel shown'><div class='timeline-heading'><h4 class='timeline-title'>Target to raise £" + campaignData.initialTarget + "</h4><p><small class='text-muted'><i class='glyphicon glyphicon-time'></i> reached on.... </small></p></div><div class='timeline-body'><p></p></div></div></li>");
+		$target.css('top', lineHeight*0.8 - 10 + 'px');
+
+		$current = $("<li class='shownli timeline-inverted'><div class='timeline-panel shown'><div class='timeline-heading'><h4 class='timeline-title'>Current total £" + campaignData.currentTotal + "</h4></div><div class='timeline-body'><p></p></div></div></li>");
+		$current.css('top', progHeight - 10 + 'px');
+
+		$stretch = $("<li class='shownli timeline-inverted'><div class='timeline-badge danger' style='top:-14px'></div><div class='timeline-panel shown'><div class='timeline-heading'><h4 class='timeline-title'>Stretch target £" + campaignData.stretchTarget + "</h4></div><div class='timeline-body'><p></p></div></div></li>");
+		$stretch.css('top', lineHeight - 10 + 'px');
+
+		$('.timeline').append($target).append($current).append($stretch);
 	}
 });
