@@ -31,18 +31,20 @@ class SessionsController < ApplicationController
                     TwitterAuthentication
                   when "facebook"
                     FacebookAuthentication
+                  when "instagram"
+                    InstagramAuthentication
                   else
                     raise auth.provider.inspect
                   end
+
     case auth.provider
-    when "twitter"
+    when "twitter", "instagram"
       name_parts = auth.info.name.split " "
       first_name = name_parts.first
       last_name = name_parts[1] || ""
     when "facebook"
       first_name = auth.extra.first_name
       last_name = auth.extra.last_name
-    else
       raise auth.provider.inspect
     end
 

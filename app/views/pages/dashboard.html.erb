@@ -23,7 +23,7 @@
           <% if current_user.instagram_authentication? %>
             <a href="#" class="btn btn-primary btn-success dashboard-button"><span class="glyphicon glyphicon-ok"> </span> Connected to Instagram</a>
           <% else %>
-            <a href="#" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-remove"> </span> Not Connected to Instagram</a>
+            <a href="/auth/instagram" class="btn btn-primary btn-info dashboard-button"><span class="glyphicon glyphicon-remove"> </span> Not Connected to Instagram</a>
           <% end %>
 				</div>
 			</div>

@@ -23,7 +23,7 @@
       <% if current_user.instagram_authentication? %>
         <h4>Instagram <a href="#" class="btn btn-primary btn-success sign-up-buttons"><span class="glyphicon glyphicon-ok"></span> Connected to Instagram</a></h4>
       <% else %>
-        <h4>Instagram <a href="#" class="btn btn-primary btn-primary sign-up-buttons"><span class="glyphicon"></span> Connect to Instagram</a></h4>
+        <h4>Instagram <a href="<%= @instagram_url %>" class="btn btn-primary btn-primary sign-up-buttons"><span class="glyphicon"></span> Connect to Instagram</a></h4>
       <% end %>
 		</div>
 		<p class="col-md-12 text-info">
