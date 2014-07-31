@@ -32,7 +32,9 @@
             <% end %>
             <% if authenticated? %>
               <li> <%= link_to "Dashboard", controller: :pages, action: :dashboard %> </li>
-              <li> <%= link_to "New Campaign", controller: :campaigns, action: :new  %> </li>
+              <% if campaigner? %>
+                <li> <%= link_to "New Campaign", controller: :campaigns, action: :new  %> </li>
+              <% end %>
             <% end %>
 					</ul>
 				</div>
