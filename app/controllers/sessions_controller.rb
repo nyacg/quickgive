@@ -64,6 +64,7 @@ class SessionsController < ApplicationController
         if request.env['omniauth.origin']
           @donor = User.new_donor first_name: first_name, last_name: last_name
           @donor.authentications = [auth_class.create(uid: auth.uid)]
+          @donor.authentications[0].access_token = auth.credentials.token if auth.provider == "facebook"
           @donor.save
           authenticate(@donor)
           redirect_to request.env['omniauth.origin']
@@ -71,6 +72,7 @@ class SessionsController < ApplicationController
         else
           @campaigner = User.new_campaigner first_name: first_name, last_name: last_name
           @campaigner.authentications = [auth_class.create(uid: auth.uid)]
+          @campaigner.authentications[0].access_token = auth.credentials.token if auth.provider == "facebook"
           @campaigner.save
           authenticate(@campaigner)
           redirect_to root_path
