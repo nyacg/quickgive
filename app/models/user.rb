@@ -15,8 +15,8 @@ class User
     @campaigner
   end
 
-  def self.new_donor
-    @donor = new
+  def self.new_donor(params = {})
+    @donor = new params
     @donor.type = "donor"
     @donor
   end
