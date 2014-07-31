@@ -29,6 +29,7 @@ body {
 	position: fixed;
 	top: 0;
 	left: 0;
+	display: none;
 }
 
 .above-visuals {
@@ -46,14 +47,10 @@ body {
 
 	width: 100%;
 	background-color: white;
-
-	box-shadow: 0 0 100px rgba(0, 0, 0, 1);
 }
 
 .text-container {
-	color: #DDD;
 	z-index: 50;
-	background-color: rgba(0, 0, 0, 0.3);
 	padding: 15px;
 	margin-bottom: 20px;
 }
@@ -75,13 +72,17 @@ body {
 	display: none;
 }
 
-@media (max-width: 767px){
-	.mobile {
+@media (min-width: 991px) {
+	.text-container {
+		color: #DDD;
+		background-color: rgba(0, 0, 0, 0.3);
+	}
+
+	.background-image {
 		display: block;
 	}
 
-	.desktio {
-		display: none;
+	.below-container {
+		box-shadow: 0 0 100px rgba(0, 0, 0, 1);
 	}
-
 }
