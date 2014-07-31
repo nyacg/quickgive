@@ -33,6 +33,10 @@ class User
     authentications.select { |a| a.is_a? TwitterAuthentication }.first
   end
 
+  def facebook_authentication
+    authentications.select { |a| a.is_a? FacebookAuthentication }.first
+  end
+
   def facebook_authentication?
     authentications.any? { |a| a.is_a? FacebookAuthentication }
   end
@@ -51,6 +55,10 @@ class User
 
   def self.find_by_twitter_screen_name(screen_name)
     uid = TwitterAuthentication.uid_of_screen_name(screen_name)
-    all.select { |u| u.twitter_authentication.uid == uid }.first
+    all.select(&:twitter_authentication?).select { |u| u.twitter_authentication.uid == uid }.first
+  end
+
+  def self.find_by_facebook_uid(uid)
+    all.select(&:facebook_authentication?).select { |u| u.facebook_authentication.uid == uid}.first
   end
 end
