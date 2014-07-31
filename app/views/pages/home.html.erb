@@ -3,7 +3,7 @@
 
 		<div class="above-visuals">
 			<div class="container">
-				<div id="home-text">My name is <input type="text" id="searchbox1" class="form-control"> and I am going to do the <input type="text" id="searchbox2" class="form-control"> to raise money for <input type="text" id="searchbox3" class="form-control">. <a href="#" class="btn btn-default home-button"> <span class="glyphicon glyphicon-chevron-right"></span></a></div>
+				<div id="home-text">My name is <input type="text" id="searchbox1" class="form-control"> and I am going to do the <input type="text" id="searchbox2" class="form-control"> to raise money for <input type="text" id="searchbox3" class="form-control searching">. <a href="#" class="btn btn-default home-button"> <span class="glyphicon glyphicon-chevron-right"></span></a></div>
 			</div>
 		</div>		  	
 		<%= image_tag("bg.jpg", class: "background-image") %>
@@ -16,3 +16,24 @@
 		</div>
 	</div>
 </div>
+<script>var data = [
+		{"label" : "Aragorn"},
+		{"label" : "Arwen"},
+		{"label" : "Bilbo Baggins"},
+		{"label" : "Boromir"},
+		{"label" : "Frodo Baggins"},
+		{"label" : "Gandalf"},
+		{"label" : "Gimli"},
+		{"label" : "Gollum"},
+		{"label" : "Legolas"},
+		{"label" : "Meriadoc Merry Brandybuck"},
+		{"label" : "Peregrin Pippin Took"},
+		{"label" : "Samwise Gamgee"}
+		];
+	$(function() {
+	$( ".searching" ).autocomplete(
+	{
+		 source:data
+	})
+});
+</script>
