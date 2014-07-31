@@ -8,26 +8,31 @@
     <% end %>
   </ul>
   <% end %>
-
-  <%= form_for @campaigner, url: {action: :create} do |f| %>
-    <%= f.fields_for :authentications, @campaigner.authentications.first do |c| %>
-      <p>
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
-    </p>
-    <p>
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
-    </p>
-    <p>
-        <%= c.label :email %>
-        <%= c.text_field :email %>
-      </p>
-      <p>
-        <%= c.label :password %>
-        <%= c.password_field :password %>
-      </p>
+  <div class = "col-md-8">
+    <%= form_for @campaigner, url: {action: :create} do |f| %>
+      <%= f.fields_for :authentications, @campaigner.authentications.first do |c| %>
+        <%= f.label :first_name, nil, class: "campaigner-label" %>
+      <div class= "input-group">
+        <span class="input-group-addon glyphicon glyphicon-user"></span>
+        <%= f.text_field :first_name, class: "campaigner-field form-control" %>
+      </div>
+      <%= f.label :last_name, nil, class: "campaigner-label" %>
+      <div class= "input-group">
+        <span class="input-group-addon glyphicon glyphicon-user"></span>
+        <%= f.text_field :last_name, class: "campaigner-field form-control" %>
+      </div>
+      <%= c.label :email, nil, class: "campaigner-label" %>
+      <div class= "input-group">
+          <span class="input-group-addon glyphicon glyphicon-envelope"></span>
+          <%= c.text_field :email, class: "campaigner-field form-control" %>
+        </div>
+        <%= c.label :password, nil, class: "campaigner-label" %>
+        <div class= "input-group">
+          <span class="input-group-addon glyphicon glyphicon-lock"></span>
+          <%= c.password_field :password, class: "campaigner-field form-control" %>
+        </div>
+      <% end %>
+      <a href="#" class="btn btn-block btn-default sign-up">Sign up <span class="none"></span></a>
     <% end %>
-    <%= f.submit "Signup" %>
-  <% end %>
+  </div>
 </div>
