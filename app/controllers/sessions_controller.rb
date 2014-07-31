@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
     if authenticated?
       user = current_user
       user.authentications.push auth_class.new(uid: auth.uid)
-      redirect_to root_path
+      redirect_to (request.env['omniauth.origin'] || root_path)
     # Else try and log in
     else
       user = auth_class.authenticate auth.uid
@@ -49,12 +49,27 @@ class SessionsController < ApplicationController
         redirect_to root_path
       # Otherwise create a new account, add as authentication method
       else
-        @campaigner = User.new_campaigner
-        @campaigner.authentications = [auth_class.create(uid: auth.uid)]
-        @campaigner.save
-        authenticate(@campaigner)
-        redirect_to root_path
+        # Check if we're a twitter signup donor
+        if request.env['omniauth.origin']
+          @donor = User.new_donor
+          @donor.authentications = [auth_class.create(uid: auth.uid)]
+          @donor.save
+          authenticate(@donor)
+          redirect_to request.env['omniauth.origin']
+        # Else we're a campaigner
+        else
+          @campaigner = User.new_campaigner
+          @campaigner.authentications = [auth_class.create(uid: auth.uid)]
+          @campaigner.save
+          authenticate(@campaigner)
+          redirect_to root_path
+        end
       end
     end
+  end
+
+  def twitter_donate
+    redirect_url = url_for(controller: :donors, action: :new, campaign: params[:campaign ], amount: params[:amount])
+    redirect_to "/auth/twitter?origin=#{CGI.escape redirect_url}"
   end
 end

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'payment/create'
+
+  get 'paypal/authenticate'
+
   resources :campaigns do
     collection do
       get 'share'
@@ -17,7 +21,7 @@ Rails.application.routes.draw do
   end
   resources :donors
 
-
+  get 'payments/create'
   get 'pages/home'
   get 'pages/dashboard'
 
@@ -77,4 +81,6 @@ Rails.application.routes.draw do
   #   end
 
   get "/auth/:provider/callback" => "sessions#create_oauth"
+  get "/twitter_donate/:campaign/:amount" => "sessions#twitter_donate"
+  get "/paypal/authenticate" => "paypal#authenticate"
 end

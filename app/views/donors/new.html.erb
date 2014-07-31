@@ -9,14 +9,14 @@
       <% if current_user.twitter_authentication? %>
         <h3>Twitter <a href="#" class="btn btn-primary btn-success sign-up-buttons"><span class="glyphicon glyphicon-ok"></span> Connected to Twitter</a></h3>
       <% else %>
-        <h3>Twitter <a href="/auth/twitter" class="btn btn-primary btn-primary sign-up-buttons"><span class="glyphicon"></span> Connect to Twitter</a></h3>
+        <h3>Twitter <a href="<%= @twitter_url %>" class="btn btn-primary btn-primary sign-up-buttons"><span class="glyphicon"></span> Connect to Twitter</a></h3>
       <% end %>
 		</div>
 		<div class="col-md-12" id="facebook">
       <% if current_user.facebook_authentication? %>
         <h3>Facebook <a href="#" class="btn btn-primary btn-success sign-up-buttons"><span class="glyphicon glyphicon-ok"></span> Connected to Facebook</a></h3>
       <% else %>
-        <h3>Facebook <a href="/auth/facebook" class="btn btn-primary btn-primary sign-up-buttons"><span class="glyphicon"></span> Connect to Facebook</a></h3>
+        <h3>Facebook <a href="<%= @facebook_url %>" class="btn btn-primary btn-primary sign-up-buttons"><span class="glyphicon"></span> Connect to Facebook</a></h3>
       <% end %>
 		</div>
 		<div class="col-md-12" id="instagram">
@@ -30,10 +30,12 @@
 			</br>*Alternatively, you can connect these later.
 		</p>
 		<div class="col-md-12">
-			<a href="#" class="btn btn-primary btn-primary sign-up-paypal"><span class="glyphicon glyphicon-hand-up"></span> Click to connect your PayPal.</a>
+			<a href="<%= @paypal_url %>" class="btn btn-primary btn-primary sign-up-paypal"><span class="glyphicon glyphicon-hand-up"></span> Click to connect your PayPal.</a>
 		</div>
+    <!--
 		<div class="col-md-12 alert alert-danger" id="error" role="alert">
 			<a href="#" class="alert-link col-md-12 text-danger">Error: Your detailes did not link with PayPal.</a>
 		</div>
+    -->
 	</div>
 </div>
