@@ -52,7 +52,7 @@
 }
 .sign-up-buttons{
 	float: right;
-	width: 60%;
+	width: 70%;
 }
 .sign-up-paypal{
 	width: 100%;
@@ -67,8 +67,8 @@
 	box-shadow: 0 0 0 0;
 	border-radius: 0 0 0 0;
 	width: 30%;
+	min-width: 7em;
 	float: left;
-	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 20pt;
 	color: black;
 	padding: 0px;
@@ -81,4 +81,66 @@
 #hi{
 	width: 2.6em;
 	float: left;
+}
+.sign-up-margin{
+	margin-bottom: 1.5em;
+}
+.sign-up-socmedia{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+#searchbox1, #searchbox2, #searchbox3{
+	border: 0px;
+	box-shadow: 0 0 0 0;
+	border-radius: 0 0 0 0;
+	font-size: 1em;
+	height: auto;
+	color: black;
+	padding: 0px;
+	border-bottom: 1px solid black;
+	margin: 0px;
+	line-height: inherit;
+	display: inline;
+}
+#searchbox1{
+	width: 60%;
+}
+#searchbox2{
+	width: 50%;
+}
+#searchbox3{
+	width: 50%;
+}
+#home-text{
+	font-size: 5.3em;
+}
+.home-button{
+	height: 1.6em;
+	margin-top: 2%;
+	font-size: 1em !important;
+}
+.new-campaign-label{
+	width: 20%;
+	min-width: 15em;
+}
+#distance, #date, #Event, #campaign_title, #campaign_description, #target, #initial, #strgoalamm, #strgoaldesc{
+	width: 30%;
+	border: 0px;
+	box-shadow: 0 0 0 0;
+	border-radius: 0 0 0 0;
+	font-size: 1em;
+	height: auto;
+	color: black;
+	padding: 0px;
+	border-bottom: 1px solid black;
+	margin: 0px;
+	line-height: inherit;
+	display: inline;
+	margin-top: 5px;
+}
+#distance:focus{
+	border: 0px;
+}
+.Signup{
+	width: 55%;
 }
