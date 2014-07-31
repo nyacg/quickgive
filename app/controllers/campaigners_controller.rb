@@ -4,6 +4,12 @@ class CampaignersController < ApplicationController
   def new
     @campaigner = User.new_campaigner
     @campaigner.authentications = [PasswordAuthentication.new]
+
+    if session.include? :prefilled
+      @name = session[:prefilled]["name"]
+    else
+      @name = nil
+    end
   end
 
   # POST /campaigners
@@ -17,7 +23,11 @@ class CampaignersController < ApplicationController
     @campaigner.authentications = [authentication]
     if @campaigner.save
       authenticate @campaigner
-      redirect_to root_path
+      if session.include? :prefilled
+        redirect_to new_campaign_path
+      else
+        redirect_to root_path
+      end
     else
       raise @campaigner.errors.inspect
       render 'new'

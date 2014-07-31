@@ -14,7 +14,7 @@
         <%= f.label :first_name, nil, class: "campaigner-label" %>
       <div class= "input-group">
         <span class="input-group-addon glyphicon glyphicon-user"></span>
-        <%= f.text_field :first_name, class: "campaigner-field form-control" %>
+        <%= f.text_field :first_name, class: "campaigner-field form-control", value: @name %>
       </div>
       <%= f.label :last_name, nil, class: "campaigner-label" %>
       <div class= "input-group">

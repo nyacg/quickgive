@@ -16,6 +16,8 @@ class CampaignsController < ApplicationController
   def new
     require_authentication!
     @campaign = Campaign.new
+
+    @prefilled = session.delete(:prefilled) || {name: nil, action: nil, charity: nil}
   end
 
   # GET /campaigns/:campaign_id
