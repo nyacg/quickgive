@@ -134,7 +134,7 @@
 	min-width: 15em;
 	float: left;
 }
-#campaign_charity, #campaign_location, #campaign_date, #campaign_event, #campaign_title, #campaign_description, #campaign_strgoaldesc{
+#campaign_charity, #campaign_location, #campaign_date, #campaign_event, #campaign_title, #campaign_description, #campaign_strgoaldesc, #campaign_event_url{
 	width: 30%;
 	min-width: 22em;
 }
@@ -148,12 +148,7 @@
 .numbered{
 	float: left;
 }
-#input-id{
-	width: 30%;
-}
-.file-input{
-	width:30% !important;
-}
+
 .file-input .input-group{
 	width: 100%;
 }
@@ -161,9 +156,19 @@
 	max-width: 20em;
 }
 .sign-up{
-	margin-top: 1em;
+	margin-top: 2em !important;
 	max-width: 17em !important;
 }
 #alternative{
 	margin-top: 10px;
+}
+#file-input-group{
+	margin-bottom: 8px;
+	margin-top: 8px;
+}
+
+#file-input {
+	display: inline;
+	width: 30% !important;
+	min-width: 22em;
 }
