@@ -4,7 +4,7 @@ class CampaignsController < ApplicationController
     require_authentication!
 
     values = params[:campaign]
-    values[:slug] = values[:title].parameterize
+    values[:slug] = values[:title].parameterize.gsub "-", ""
     values[:date] = Chronic.parse values[:date]
     values[:charity] = Charity.find_by_title values[:charity].upcase
   
