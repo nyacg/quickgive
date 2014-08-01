@@ -10,7 +10,7 @@ class Payment
   key :via,     String
 
   def notify_user
-    user.notify "Your donation of £#{amount} to #{campaign.title} was successful!"
+    user.notify "Your donation of £#{amount} to #{campaign.title} (http://quickgive.rckrds.uk#{Rails.application.routes.url_helpers.campaign_path campaign}) was successful!"
   end
 
   def campaign

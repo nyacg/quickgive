@@ -64,7 +64,7 @@ class User
 
   def self.find_by_twitter_screen_name(screen_name)
     uid = TwitterAuthentication.uid_of_screen_name(screen_name)
-    all.select(&:twitter_authentication?).select { |u| u.twitter_authentication.uid == uid }.first
+    all.select(&:twitter_authentication?).select { |u| u.twitter_authentication.uid.to_s == uid.to_s }.first
   end
 
   def self.find_by_facebook_uid(uid)
