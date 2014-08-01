@@ -8,6 +8,8 @@ class User
   key :first_name,    String
   key :last_name,     String
   key :type,          String, required: true # campaigner or donor
+  key :paypal_email,  String
+  key :paypal_preapproval_key, String
 
   def self.new_campaigner(params = {})
     @campaigner = new params

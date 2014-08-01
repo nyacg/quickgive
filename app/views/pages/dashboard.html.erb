@@ -33,7 +33,7 @@
           <% @donations.each do |donation| %>
             <div id="first">
               <%=image_tag "donation.png", class: "dashboard-donation-image"%>
-              <p class="dashboard-donation-text">You donated <%= quid donation.amount %> to <%= link_to donation.campaign.title, campaign_path(donation.campaign) %> <%= distance_of_time_in_words Time.now, donation.time %> ago.</p>
+              <p class="dashboard-donation-text">You donated <%= quid donation.amount %> to <%= link_to donation.campaign.title, campaign_path(donation.campaign) unless donation.campaign.nil? %> <%= distance_of_time_in_words Time.now, donation.time %> ago.</p>
             </div>
           <% end %>
 				</div>

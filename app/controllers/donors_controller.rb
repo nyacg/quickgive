@@ -18,7 +18,7 @@ class DonorsController < ApplicationController
     @facebook_url = "/auth/facebook?origin=#{CGI.escape back_here_url}"
     @facebook_url = "/auth/instagram?origin=#{CGI.escape back_here_url}"
 
-    donate_url = url_for(controller: :payments, action: :create, campaign: params[:campaign], amount: params[:amount])
+    donate_url = url_for(controller: :payments, action: :create, campaign: params[:campaign], amount: params[:amount], uid: current_user.id)
     @paypal_url = "/paypal/authenticate?redirect=#{CGI.escape donate_url}"
   end
 end
