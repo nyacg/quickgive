@@ -3,7 +3,7 @@
 
 		<div class="above-visuals">
 			<div class="container">
-				<div id="home-text"><%= form_tag("/pages/handle_home", method: :post) %>My name is <input type="text" id="searchbox1" name="searchbox1" class="form-control" <% if authenticated? %>value=<%= current_user.first_name %><% end %>> and I will <input type="text" id="searchbox2" name="searchbox2" class="form-control"> to raise money for <input type="text" id="searchbox3" name="searchbox3" class="form-control">. <button class="btn btn-default home-button"> <span class="glyphicon glyphicon-chevron-right"></span></button></form></div>
+				<div id="home-text"><%= form_tag("/pages/handle_home", method: :post) %>My name is <input type="text" id="searchbox1" name="searchbox1" autocomplete="off" class="form-control" <% if authenticated? %>value=<%= current_user.first_name %><% end %>> and I will <input type="text" id="searchbox2" name="searchbox2" class="form-control"> to raise money for <input type="text" id="searchbox3" name="searchbox3" class="form-control"> <button class="btn btn-default home-button"> <span class="glyphicon glyphicon-chevron-right"></span></button></form></div>
 
 			</div>
 		</div>		  	
@@ -18,16 +18,3 @@
 	</div>
 
 </div>
-<script>
-	$(function() {
-		if($(window).height() > $(window).width())
-		{
-		console.log("The bird is the word");
-		$( "#home-text").css({"font-size":"200%", "background-color" : "rgba(255, 255, 255, 0.7)"});
-		$("#searchbox1").css({"width": "100%"});
-		$("#searchbox2").css({"width": "100%"});
-		$("#searchbox3").css({"width": "70%"});
-		$('body').css({"background-image": "url(http://www.cash-is-cool.com/images/article/20110427161210shutterstock_17494123.jpg)"});
-		}
-	});
-</script>

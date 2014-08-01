@@ -115,20 +115,25 @@
 #home-text{
 	font-size: 500%;
 	background-color: rgba(255, 255, 255, 0.1);
+	padding: 20px;
 }
 .home-button{
 	height: 1.6em;
-	margin-top: 2%;
+	margin-left: 10px;
 	font-size: 2em !important;
 	background: 0 !important;
 	border: 0 !important;
 }
 .home-button:active{
 	background: 0 !important;
-	border: 0 !important;
+	border: none !important;
 	box-shadow: none !important;
-	margin-left: 5px;
+	margin-left: 15px;
 }
+.home-button:focus{
+	border: none !important;
+}
+
 .new-campaign-label{
 	width: 20%;
 	min-width: 15em;
@@ -171,4 +176,33 @@
 	display: inline;
 	width: 30% !important;
 	min-width: 22em;
+}
+
+@media (max-width: 991px){
+	#home-text{
+		font-size: 200%;
+		background-color: rgba(255, 255, 255, 0.7);
+	}
+	#searchbox1{
+		width: 100%;
+	}
+	#searchbox2{
+		width: 100%;
+	}
+	#searchbox3{
+		width: 70%;
+	}
+	body{
+		background: url(http://www.cash-is-cool.com/images/article/20110427161210shutterstock_17494123.jpg) no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+}
+
+@media (max-width: 1080px){
+	#home-text {
+		font-size: 400%;
+	}
 }
