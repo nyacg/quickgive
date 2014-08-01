@@ -1,5 +1,5 @@
 class Status
-  attr_accessor :campaign
+  attr_accessor :campaign, :amount
 
   def initialize text, via
     @via = via
