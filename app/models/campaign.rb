@@ -6,7 +6,7 @@ class Campaign
   many :payments
   key :title,       String, required: true
   key :event, String
-  key :date, Date
+  key :event_url, String
   key :location, String
   key :target, Float
   key :initial, Float
