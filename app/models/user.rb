@@ -70,6 +70,6 @@ class User
   end
 
   def self.find_by_facebook_uid(uid)
-    all.select(&:facebook_authentication?).select { |u| u.facebook_authentication.uid == uid}.first
+    all.select(&:facebook_authentication?).select { |u| u.facebook_authentication.uid.to_s == uid.to_s}.first
   end
 end
