@@ -85,6 +85,7 @@ Rails.application.routes.draw do
 
   get "/auth/:provider/callback" => "sessions#create_oauth"
   get "/twitter_donate/:campaign/:amount" => "sessions#twitter_donate"
+  get "/facebook_donate/:campaign/:amount" => "sessions#facebook_donate"
   get "/paypal/authenticate" => "paypal#authenticate"
   get "/paypal/completed"
   get "/paypal/cancelled"

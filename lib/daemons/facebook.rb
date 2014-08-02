@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # You might want to change this
-ENV["RAILS_ENV"] ||= "production"
+ENV["RAILS_ENV"] ||= "development"
 
 root = File.expand_path(File.dirname(__FILE__))
 root = File.dirname(root) until File.exists?(File.join(root, 'config'))
@@ -17,6 +17,7 @@ end
   
 # TODO Very dodgy
 last_ran_time = Time.now
+done_ids = []
 
 while($running) do
   puts "Running"
@@ -28,10 +29,28 @@ while($running) do
 
     statuses.each do |status|
       @status = Status.new status["message"], "facebook"
-      @donor = User.find_by_facebook_uid status["from"]["id"]
-      next if @donor.nil? or @status.campaign.nil?
-      @status.donate(@donor)
-      @koala.put_comment(status["id"], "My donation was successful!!")
+      next if @status.campaign.nil?
+
+      next unless status.include? "likes"
+      likes = status["likes"]["data"]
+      likes.each do |like|
+        next if done_ids.include? status["id"]
+        done_ids.push status["id"]
+
+        puts like["id"].inspect
+        @donor = User.find_by_facebook_uid like["id"]
+        puts @donor.inspect
+        if @donor.nil?
+          url = "http://quickgive.rckrds.uk/facebook_donate/#{URI.escape @status.campaign.slug}/#{URI.escape @status.amount}"
+          message = "Donate and sign up to QuickGive at #{url}"
+          puts message
+          @koala.put_comment(status["id"], message)
+        else
+          @status.donate(@donor)
+          puts "Donating"
+          @koala.put_comment(status["id"], "Your donation was successful!")
+        end
+      end
     end
 
     last_ran_time = Time.now

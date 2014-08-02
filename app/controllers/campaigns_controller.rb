@@ -4,8 +4,7 @@ class CampaignsController < ApplicationController
     require_authentication!
 
     values = params[:campaign]
-    values[:slug] = values[:title].parameterize.gsub "-", ""
-    values[:date] = Chronic.parse values[:date]
+    values[:slug] = values[:event].parameterize.gsub "-", ""
     values[:charity] = Charity.find_by_title values[:charity].upcase
   
     @campaign = Campaign.new values
@@ -23,6 +22,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.new
 
     @prefilled = session.delete(:prefilled) || {name: nil, action: nil, charity: nil}
+    @prefilled["action"] = @prefilled["action"].titleize unless @prefilled["action"].nil?
   end
 
   # GET /campaigns/:campaign_id

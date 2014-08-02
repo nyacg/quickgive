@@ -50,7 +50,9 @@ class SessionsController < ApplicationController
     # If loged in, add as authentication method
     if authenticated?
       user = current_user
-      user.authentications.push auth_class.new(uid: auth.uid)
+      ac = auth_class.new(uid: auth.uid)
+      ac.access_token = auth.credentials.token if auth.provider == "facebook"
+      user.authentications.push ac
       redirect_to (request.env['omniauth.origin'] || root_path)
     # Else try and log in
     else
@@ -85,5 +87,10 @@ class SessionsController < ApplicationController
   def twitter_donate
     redirect_url = url_for(controller: :donors, action: :new, campaign: params[:campaign ], amount: params[:amount])
     redirect_to "/auth/twitter?origin=#{CGI.escape redirect_url}"
+  end
+
+  def facebook_donate
+    redirect_url = url_for(controller: :donors, action: :new, campaign: params[:campaign ], amount: params[:amount])
+    redirect_to "/auth/facebook?origin=#{CGI.escape redirect_url}"
   end
 end
