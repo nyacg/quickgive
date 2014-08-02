@@ -29,4 +29,9 @@ class Campaign
   end
 
   many :payments
+
+  def image_url
+    image = Dir["public/data/#{slug}.*"].first.split("/").last
+    "/data/#{image}"
+  end
 end

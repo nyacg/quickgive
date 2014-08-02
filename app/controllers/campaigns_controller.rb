@@ -6,11 +6,22 @@ class CampaignsController < ApplicationController
     values = params[:campaign]
     values[:slug] = values[:event].parameterize.gsub "-", ""
     values[:charity] = Charity.find_by_title values[:charity].upcase
-  
+
+    if values.include? :image
+      extension =  values[:image].original_filename.split(".").last
+      directory = "public/data"
+      path = File.join("public/data", "#{values[:slug]}.#{extension}")
+      File.open(path, "wb") { |f| f.write(values[:image].read) }
+      values.delete :image
+    else
+      FileUtils.cp "public/data/placeholder.jpg", File.join("public/data", "#{values[:slug]}.jpg")
+    end
+
     @campaign = Campaign.new values
     @campaign.user = current_user
     if @campaign.save
-      redirect_to campaign_path(@campaign)
+      # redirect_to campaign_path(@campaign)
+      redirect_to "pages/dashboard"
     else
       render 'new'
     end

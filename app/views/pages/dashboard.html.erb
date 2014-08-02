@@ -49,6 +49,7 @@
               <th>Charity sponsored</th>
               <th>Raised so far</th>
               <th>Goal</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -58,6 +59,7 @@
                 <td><%= campaign.charity.title.titleize %></td>
                 <td><%= quid campaign.total_raised %></td>
                 <td><%= quid campaign.target %></td>
+                <td><%= link_to "Share", url_for(controller: :campaigns, action: :share, campaign: campaign) %></td>
               </tr>
             <% end %>
           </tbody>
