@@ -24,6 +24,11 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def share_create_oauth
+    origin = params[:origin] + "&amount=" + params[:amount] + "&description=" + CGI.escape(params[:description])
+    redirect_to "/auth/#{params[:provider]}?origin=#{CGI.escape origin}"
+  end
+
   def create_oauth
     auth = request.env["omniauth.auth"]
     auth_class =  case auth.provider
@@ -53,14 +58,22 @@ class SessionsController < ApplicationController
       ac = auth_class.new(uid: auth.uid)
       ac.access_token = auth.credentials.token if auth.provider == "facebook"
       user.authentications.push ac
-      redirect_to (request.env['omniauth.origin'] || root_path)
+      if session.include? :prefilled
+        redirect_to new_campaign_path
+      else
+        redirect_to (request.env['omniauth.origin'] || root_path)
+      end
     # Else try and log in
     else
       user = auth_class.authenticate auth.uid
       # Otherwise, see if there's an account to log in as
       if user
         authenticate user
-        redirect_to root_path
+        if session.include? :prefilled
+          redirect_to new_campaign_path
+        else
+          redirect_to root_path
+        end
       # Otherwise create a new account, add as authentication method
       else
         # Check if we're a twitter signup donor
@@ -70,7 +83,11 @@ class SessionsController < ApplicationController
           @donor.authentications[0].access_token = auth.credentials.token if auth.provider == "facebook"
           @donor.save
           authenticate(@donor)
-          redirect_to request.env['omniauth.origin']
+          if session.include? :prefilled
+            redirect_to new_campaign_path
+          else
+            redirect_to request.env['omniauth.origin']
+          end
         # Else we're a campaigner
         else
           @campaigner = User.new_campaigner first_name: first_name, last_name: last_name
@@ -78,7 +95,11 @@ class SessionsController < ApplicationController
           @campaigner.authentications[0].access_token = auth.credentials.token if auth.provider == "facebook"
           @campaigner.save
           authenticate(@campaigner)
-          redirect_to root_path
+          if session.include? :prefilled
+            redirect_to new_campaign_path
+          else
+            redirect_to root_path
+          end
         end
       end
     end

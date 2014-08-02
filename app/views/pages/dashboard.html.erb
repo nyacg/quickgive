@@ -39,7 +39,6 @@
 				</div>
 			</div>
 		</div>
-    <% if campaigner? %>
       <div class="row dashboard2">
         <h2 class = "page-header">My Campaigns</h2>
         <table class="table dashboard-campaigns">
@@ -59,11 +58,10 @@
                 <td><%= campaign.charity.title.titleize %></td>
                 <td><%= quid campaign.total_raised %></td>
                 <td><%= quid campaign.target %></td>
-                <td><%= link_to "Share", url_for(controller: :campaigns, action: :share, campaign: campaign) %></td>
+                <td><%= link_to "Share", url_for(controller: :campaigns, action: :share, id: campaign.id) %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
-    <% end %>
 	</div>

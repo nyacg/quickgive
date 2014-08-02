@@ -21,3 +21,5 @@ config/twitter.yml
 config/mongo.yml
 config/paypal_adaptive.yml
 *.pid
+
+public/data

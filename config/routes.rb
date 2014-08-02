@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   resources :campaigns do
     collection do
-      get 'share'
       get 'analysis'
     end
   end
@@ -83,7 +82,11 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  get "/auth/:provider/callback" => "sessions#create_oauth"
+  get "/auth/:provider/callback" => "sessions#create_oauth", as: :create_oauth
+  get "/sauth/:provider" => "sessions#share_create_oauth"
+  get "/campaigns/:id/share" => "campaigns#share"
+  get "/campaigns/:id/share_twitter" => "campaigns#share_twitter"
+  get "/campaigns/:id/share_facebook" => "campaigns#share_facebook"
   get "/twitter_donate/:campaign/:amount" => "sessions#twitter_donate"
   get "/facebook_donate/:campaign/:amount" => "sessions#facebook_donate"
   get "/paypal/authenticate" => "paypal#authenticate"

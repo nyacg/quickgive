@@ -4,39 +4,48 @@
 	</h3>
 	<div class="col-md-7">
 		<div class="col-md-12">
-			<h4 class="numbered">Donation ammount</h4>
+			<h4 class="numbered">Donation amount</h4>
 		    <div class="input-group" style="float:right; width:51%;">
 			    <span class="input-group-addon">£</span>
-		        <input type="text" name="donate-ammount" class="form-control glyph-input" placeholder="Enter donation ammount"/> 
+		        <input type="text" name="donate-amount" id="donate-amount" class="form-control glyph-input" placeholder="Enter donation amount"/> 
 		        <span class="input-group-addon">.00</span>
 		    </div>
 		</div>
-		<div id="file-input-group" class="col-md-12">
-	      	<h4 class="numbered">Upload image</h4>
-	      	<input class="form-control" style="float:right" id="file-input" type="file">
+		<div class="col-md-12">
+			<textarea class="form-control share-text" rows="3" id="donate-description"></textarea>
 		</div>
 		<div class="col-md-12">
-			<textarea class="form-control share-text" rows="3"></textarea>
+      <a class="btn btn-primary btn-success margin" id="twitter" href="<%= @twitter_link %>">Post on Twitter</a>
 		</div>
 		<div class="col-md-12">
-			<button class="btn btn-primary btn-info margin" id="twitter">Connect to Twitter</button>
+      <% if current_user.facebook_authentication? %>
+        <a class="btn btn-primary btn-success margin" id="facebook" href="<%= @facebook_link %>">Post on Facebook</a>
+      <% else %>
+        <a class="btn btn-primary btn-info margin" id="facebook" href="<%= @facebook_link %>">Connect to Facebook & Post</a>
+      <% end %>
 		</div>
 		<div class="col-md-12">
-			<button class="btn btn-primary btn-info margin" id="facebook">Connect to Facebook</button>
+			<button class="btn btn-primary btn-success margin" id="instagram">Connect to Instagram</button>
 		</div>
 		<div class="col-md-12">
-			<button class="btn btn-primary btn-info margin" id="instagram">Connect to Instagram</button>
-		</div>
-		<div class="col-md-12">
-			<button class="btn btn-primary btn-info margin">Create QR code</button>
+			<button class="btn btn-primary btn-success margin">Create QR code</button>
 		</div>
 		</div>
 	<div class="col-md-4">
 		<h4 class="page-header">Share in just 3 simple steps</h4>
-		<p>Step 1: Enter the required donation ammount</p>
-		<p>Step 2: Upload an image (optional)</p>
-		<p>Step 3: Enter/Edit text to appear as a message</p>
-		<p>Step 4: Share via your favourite social media</p>
+		<p>Step 1: Enter the required donation amount</p>
+		<p>Step 2: Enter/Edit text to appear as a message</p>
+		<p>Step 3: Share via your favourite social media</p>
 	</div>
 </div>
+
 <script>
+  $(document).ready(function() {
+    $("a.btn").click(function() {
+      var url = $(this).attr("href");
+      url += "?text=" + encodeURIComponent("#quick_give #<%= @campaign.slug %> " + "#donate" + $("#donate-amount").val() + "pounds" + " " + $("#donate-description").val());
+      window.open(url);
+      return false;
+    });
+  });
+</script>

@@ -21,7 +21,7 @@ class CampaignsController < ApplicationController
     @campaign.user = current_user
     if @campaign.save
       # redirect_to campaign_path(@campaign)
-      redirect_to "pages/dashboard"
+      redirect_to "/pages/dashboard"
     else
       render 'new'
     end
@@ -61,10 +61,25 @@ class CampaignsController < ApplicationController
   # GET /campaigns/:campaign_id/share
   def share
     @campaign = Campaign.find params[:id]
+
+    @twitter_link = "https://twitter.com/intent/tweet"
+
+    share_facebook_link = url_for(controller: :campaigns, action: :share_facebook, campaign: @campaign)
+    @facebook_link = current_user.facebook_authentication? ? share_facebook_link : "/sauth/facebook?origin=#{CGI.escape share_facebook_link}"
   end
 
   # GET /campaigns/:campaign_id/analysis
   def analysis
     @campaign = Campaign.find params[:id]
+  end
+
+  def share_facebook
+    authentication = current_user.facebook_authentication
+    @koala = Koala::Facebook::API.new authentication.access_token
+    @koala.put_wall_post("#quick_give #donate#{params[:amount]} #{params[:message]}")
+  end
+
+  def share_twitter
+    authentication = current_user.twitter_authentication
   end
 end
