@@ -5,7 +5,7 @@
   "currentTotal": <%= @campaign.total_raised %>,
   "donors": [
     <% @campaign.payments.each do |payment| %>
-    {"name": "<%= payment.user.first_name %> <%= payment.user.last_name %>", "date": "<%= time_ago_in_words payment.time %>", "amount": <%= payment.amount %>, "via": "<%= payment.via %>"}<%= "," unless payment == @campaign.payments.last %>
+    {"name": "<%= payment.user.first_name %> <%= payment.user.last_name %>", "date": "<%= time_ago_in_words payment.time %>", "amount": <%= payment.amount %>, "via": "<%= payment.via || "social" %>"}<%= "," unless payment == @campaign.payments.last %>
     <% end %>
   ]
 }
