@@ -41,11 +41,7 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.find params[:id]
     @strgoaldesc = @campaign.strgoaldesc
     @strgoaldesc[0] = @strgoaldesc[0].downcase unless @strgoal.nil?
-    if @campaign.user == current_user
-      render :show_owner
-    else
-      render :show
-    end
+    render :show
   end
 
   # GET /campaigns/:campaign_id/edit

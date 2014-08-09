@@ -1,5 +1,5 @@
 defaults: &defaults
-  host: rckrds.uk
+  host: localhost
   port: 27018
   options:
     w: 1
@@ -9,7 +9,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: quickgive_development
+  database: quickgive
 
 test:
   <<: *defaults

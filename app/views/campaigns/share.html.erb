@@ -43,7 +43,7 @@
   $(document).ready(function() {
     $("a.btn").click(function() {
       var url = $(this).attr("href");
-      url += "?text=" + encodeURIComponent("#quick_give #<%= @campaign.slug %> " + "#donate" + $("#donate-amount").val() + "pounds" + " " + $("#donate-description").val());
+      url += "?text=" + encodeURIComponent("#quick_give #<%= @campaign.slug %> " + "#donate" + $("#donate-amount").val() + "pounds" + " " + $("#donate-description").val() + " http://quickgive.rckrds.uk/campaigns/<%= @campaign.slug %>");
       window.open(url);
       return false;
     });

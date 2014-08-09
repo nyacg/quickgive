@@ -5,6 +5,7 @@
 			<div class="col-md-4 col-md-offset-1 text-container">
 				<h2><%= @campaign.user.first_name %> <%= @campaign.user.last_name %></h2>
 				<h3>is rasising money for <strong><a href="<%= @campaign.charity.website or "" %>"><%= @campaign.charity.title.titleize %></a></strong> by doing a <strong><a href="<%= @campaign.event_url or "#" %>"><%= @campaign.event %></a></strong></h3>
+        <h3><%= @campaign.description %></h3>
 				<h3>Current total: <%= quid @campaign.total_raised %> of <%= quid @campaign.target %></h3>
 				<h3>On stretch target (<%= quid @campaign.strgoalamm %>): <%= @strgoaldesc %></h3>
 			</div>

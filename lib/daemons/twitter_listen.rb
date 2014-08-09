@@ -28,8 +28,8 @@ while($running) do
         puts @status.campaign.slug.inspect
         puts @status.amount.inspect
         url = "http://quickgive.rckrds.uk/twitter_donate/#{URI.escape @status.campaign.slug}/#{URI.escape @status.amount}"
-        message = "Donate and sign up to QuickGive at #{url}"
-        puts TWITTER_CLIENT.update("@#{status.user.screen_name} #{message} #{Time.now}", in_reply_to_status_id: status.id).inspect
+        message = "Donate at #{url}"
+        puts TWITTER_CLIENT.update("@#{status.user.screen_name} #{message}", in_reply_to_status_id: status.id).inspect
       else
         @status.donate @donor
       end

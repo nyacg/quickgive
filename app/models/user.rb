@@ -60,7 +60,7 @@ class User
     puts message.inspect
     if twitter_authentication?
       screen_name = authentications.select { |a| a.is_a? TwitterAuthentication }.first.screen_name
-      puts TWITTER_CLIENT.update("@#{screen_name} #{message} #{Time.now}").inspect
+      puts TWITTER_CLIENT.update("@#{screen_name} #{message}").inspect
     end
   end
 
