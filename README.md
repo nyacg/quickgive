@@ -3,81 +3,37 @@ quickgive
 
 A platform for allowing very quick donations via social media.
 
+# Backend Documentation
+## 10 Second Rails Crash Course
 
-Campaigner = for viewing full dashboard.
-Donator = a social login. One campaigner can have many donors.
+Models = representations of objects (e.g., a `User`, a `Charity`) that almost-always correspond to database collections (tables).
 
-## Backend Flow
-#### CAMPAIGNER FLOW
-1. Signup as campaigner - done
-2. Login/logout as campaigner - done
-3. Create campaign - needs more info
-4. Authenticate with twitter (adding child donors) - done
-5. Donate (using paypal from any child donor)
+Views = the front-end things that users see.
 
-#### NEW DONATOR FLOW
-1. Register as donor - done
-2. Add paypal to donor - not done
-3. Link to a proper account - adding parent contributor
+Controllers = the glue linking the models and views together.
 
-#### EXISTING DONATOR FLOW
-1. Donate - done
+As a general rule of thumb, you want big fat models and small lean controllers. That hasn't been strictly adhered to in QuickGive, but hey: hackathons...
 
-### SOCIAL INTEGRATION
-1. Real-time twitter stream listener - not done
+You'll find models in `app/models`, views in `app/views` and controllers in `app/controllers`. The Twitter stream bot lives in `lib/daemons/twitter_listen.rb`, and the Facebook one in `lib/daemons/facebook.rb`. See `start.sh` (a script that starts both of those bots as well as the Rails server) for how to start and stop these.
 
-## URLs
-### Campaigners Registration/Login
-Campaigners and donors seperate thing.
+The only other things you may want are `config/routes.rb` which controls the routing for the application (i.e., when you go to a certain URL, which controller it takes to), `config/mongo.yml` which controls mongo settings, `config/initializers/tweetstream.rb` which contains code to initialise the Twitter API clients, `config/twitter.yml` which contains Twitter API keys and `config/paypal_adaptive.yml` which contains Paypal API key.
 
-At the moment campaigner registration is just an email address. Will add authentication later.
+## Models
 
-    POST /campaigners
-    {
-      email: hrickards@gmail.com
-    }
+All of the models described below can be found in `app/models` (with more detailed documentation). All of them use `MongoMapper` to store data in a mongo DB, but this is abstracted so you only ever need to use Ruby code rather than actually writing Mongo queries.
 
-`GET /campaigners/new` gives you your registration page `campaigners#new`, that needs to post via a form to `/campaigners`. That'll redirect you back to somewhere (homepage?).
+`User` - someone who signs up for the site. They're either a campaigner or donor, depending on whether they signed up initially on the website or signed up by a link that was tweeted at them by our twitter bot. At the moment, this distinction of status is not used for anything important.
 
-Create a new session to log in as a campaigner.
+A `User` has many `Authentication`s: these are ways the user has to login to the site, e.g., via password, twitter, etc. `Authentication` is a general class that refers to all the different types, and `PasswordAuthentication`, `FacebookAuthentication`, `TwitterAuthentication`, `InstagramAuthentication` (just an empty skeleton at the moment) are children classes of `Authentication` that do the actual heavy lifting.
 
-    POST /sessions
-    {
-      email: hrickards@gmail.com
-    }
+A `Charity` is simply a class representing a charity from the Charities Commission data we have.
 
-`GET /sessions/destroy` (can alias to a nicer URL later) logs you out and redirects you back to the homepage.
+A `Campaign` is what we in the team have been calling a campaign (hence the name). It's owned by both a `User` (the person who created it) and a `Charity` (the charity it's raising money for).
 
-`GET /sessions/new` (can alias to a nicer URL later) gives you your login page `sessions#new`. That needs to post to `/sessions`, and that will redirect you back to somewhere (homepage?).
+A `Campaign` has many `Payment`s, each of which represents an individual donation. A `Payment` is owned by both a `Campaign` (the campaign the donation was made to) and a `User` (the user who made the payment). The PayPal payment is taken by this model.
 
-### Campaigns
-Register a new campaign. Need to be logged in (via sessions#create).
+Somewhat isolated from the other models is a `Status`. This is not actually linked to any stored data in mongo or anywhere, but is instead used as a convenient class for parsing things out of and making payments from a social media status (e.g., a tweet).
 
-    POST /campaigns
-    {
-      email: hrickards@gmail.com
-    }
+## Controllers
 
-`GET /campaigns/new` gives you your nice pretty campaign creation page `campaigns#new`, that needs to post to `/campaigns`, and that will redirect you to `/campaigns/campaign_id` (`campaigns#show`).
-
-
-### Donors
-Register a new donor.
-
-    POST /donors
-    {
-      twitter_username: harryrickards
-    }
-
-`GET /donors/new` gives you the (simple!) signup form. That should post to `/donors`, which will do something. This will also include PayPal information, but not right now.
-
-Donate.
-
-    POST /donors/donate
-    {
-      campaign_id: foo,
-      user_id: bar,
-      amount: 50000000000.00
-    }
-
-I'll be the only one calling this straight from the backend.
+All controllers are fully documented; see `config/routes.rb` to see which controller controls which URLs.

@@ -1,3 +1,5 @@
+# A charity from the Charities Commission data we have.
+
 class Charity
   include MongoMapper::Document
 
@@ -25,7 +27,12 @@ class Charity
   key :created_at, String
   key :updated_at, String
 
+  # Use natural language search to find a charity given a search string (for
+  # the autocomplete on the front page)
   def self.search(query)
+    # Just uses Mongo's default built-in full-text search
+    # TODO: It's really bad. Have we configured it wrong, or do we need to use
+    # something else?
     where({"$text" => {"$search" => query}}).limit(10).all
   end
 end
